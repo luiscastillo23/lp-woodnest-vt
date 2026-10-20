@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Compass, MapPin, ArrowUpRight, Mountain, Wind, Trees, Navigation, Sun } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { GlassCard } from '../../components/ui/GlassCard';
@@ -145,9 +146,14 @@ const REGIONS = ['All Regions', 'Pacific Canopy', 'Nordic Fjords', 'Alpine Ridge
 
 interface LocationsSectionProps {
   onSelectLocation?: (locationName: string, price: number) => void;
+  onOpenLocationDetail?: (locationId: string) => void;
 }
 
-export const LocationsSection: React.FC<LocationsSectionProps> = ({ onSelectLocation }) => {
+export const LocationsSection: React.FC<LocationsSectionProps> = ({
+  onSelectLocation,
+  onOpenLocationDetail,
+}) => {
+  const navigate = useNavigate();
   const [activeRegion, setActiveRegion] = useState<(typeof REGIONS)[number]>('All Regions');
   const [selectedId, setSelectedId] = useState<string>(SANCTUARY_LOCATIONS[0].id);
   const [viewMode, setViewMode] = useState<'atmosphere' | 'topography'>('atmosphere');
@@ -168,6 +174,13 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({ onSelectLoca
     if (heroEl) {
       heroEl.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const handleOpenDetail = (locId: string = activeLocation.id) => {
+    if (onOpenLocationDetail) {
+      onOpenLocationDetail(locId);
+    }
+    navigate(`/location/${locId}/detail`);
   };
 
   return (
@@ -393,13 +406,26 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({ onSelectLoca
                     <AnimatePresence mode="wait">
                       <motion.h3
                         key={activeLocation.id}
+                        role="button"
+                        tabIndex={0}
+                        title={`Explore ${activeLocation.name} full detail page`}
+                        onClick={() => handleOpenDetail(activeLocation.id)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            handleOpenDetail(activeLocation.id);
+                          }
+                        }}
                         initial={{ opacity: 0, y: 6 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -4 }}
                         transition={{ duration: 0.2, ease: 'easeOut' }}
-                        className="text-2xl sm:text-3xl md:text-4xl font-light tracking-[-0.02em] text-white"
+                        className="group inline-flex items-center gap-2.5 text-2xl sm:text-3xl md:text-4xl font-light tracking-[-0.02em] text-white hover:text-amber-300 transition-colors cursor-pointer"
                       >
-                        {activeLocation.name}
+                        <span className="underline decoration-amber-400/50 underline-offset-8 group-hover:decoration-amber-300">
+                          {activeLocation.name}
+                        </span>
+                        <ArrowUpRight className="w-5 h-5 text-amber-400 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0" />
                       </motion.h3>
                     </AnimatePresence>
                   </div>
@@ -476,14 +502,24 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({ onSelectLoca
                     <span>{activeLocation.nearestTown}</span>
                   </div>
 
-                  <Button
-                    variant="solid"
-                    onClick={handleReserveLocation}
-                    className="gap-2 whitespace-nowrap shrink-0 text-xs font-semibold cursor-pointer"
-                  >
-                    Reserve {activeLocation.name.split(' ')[0]} Sanctuary
-                    <ArrowUpRight className="w-3.5 h-3.5" />
-                  </Button>
+                  <div className="flex flex-wrap items-center gap-2.5">
+                    <Button
+                      variant="glass"
+                      onClick={() => handleOpenDetail(activeLocation.id)}
+                      className="gap-1.5 whitespace-nowrap shrink-0 text-xs font-medium cursor-pointer"
+                    >
+                      Explore Residence & Map
+                      <ArrowUpRight className="w-3.5 h-3.5 text-amber-400" />
+                    </Button>
+                    <Button
+                      variant="solid"
+                      onClick={handleReserveLocation}
+                      className="gap-2 whitespace-nowrap shrink-0 text-xs font-semibold cursor-pointer"
+                    >
+                      Reserve {activeLocation.name.split(' ')[0]}
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </Button>
+                  </div>
                 </div>
               </div>
             </GlassCard>
