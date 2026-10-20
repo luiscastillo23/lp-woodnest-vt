@@ -34,7 +34,14 @@ export const Navbar: React.FC = () => {
             </a>
           ))}
         </nav>
-        <Button variant="solid" className="px-5 py-2 text-xs font-medium">
+        <Button
+          variant="solid"
+          onClick={() => {
+            const el = document.getElementById('hero-booking');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          }}
+          className="px-5 py-2 text-xs font-medium whitespace-nowrap shrink-0 cursor-pointer"
+        >
           Book Now
         </Button>
       </div>

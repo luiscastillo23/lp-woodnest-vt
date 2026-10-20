@@ -61,7 +61,19 @@ function isBetweenDays(date: Date, start: Date, end: Date): boolean {
   return d > s && d < e;
 }
 
-export const BookingWidget: React.FC = () => {
+interface BookingWidgetProps {
+  title?: string;
+  subtitle?: string;
+  pricePerNight?: number;
+  guestsRange?: string;
+}
+
+export const BookingWidget: React.FC<BookingWidgetProps> = ({
+  title = INITIAL_BOOKING_DATA.title,
+  subtitle = INITIAL_BOOKING_DATA.subtitle,
+  pricePerNight = INITIAL_BOOKING_DATA.pricePerNight,
+  guestsRange = INITIAL_BOOKING_DATA.guestsRange,
+}) => {
   // Normalized "today" (00:00:00) and "maxStartDate" (today + 1 year)
   const today = useMemo(() => normalizeDate(new Date()), []);
   const maxStartDate = useMemo(() => {
@@ -84,6 +96,7 @@ export const BookingWidget: React.FC = () => {
   );
   const [hoveredDate, setHoveredDate] = useState<Date | null>(null);
   const [validationMessage, setValidationMessage] = useState<string | null>(null);
+  const [reservedConfirmed, setReservedConfirmed] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -219,15 +232,15 @@ export const BookingWidget: React.FC = () => {
   const nights = calculateNights();
 
   return (
-    <div ref={containerRef} className="relative w-full max-w-[330px] md:mb-8">
+    <div id="hero-booking" ref={containerRef} className="relative w-full max-w-[330px] md:mb-8">
       <GlassCard className="w-full backdrop-blur-2xl">
         <div className="flex items-start justify-between mb-4">
           <div>
             <h2 className="text-lg font-normal leading-snug text-white">
-              {INITIAL_BOOKING_DATA.title}
+              {title}
             </h2>
             <p className="text-lg font-normal leading-snug text-white">
-              {INITIAL_BOOKING_DATA.subtitle}
+              {subtitle}
             </p>
           </div>
           <Button
@@ -537,19 +550,30 @@ export const BookingWidget: React.FC = () => {
           </div>
         </div>
 
-        <div className="flex items-baseline justify-between mb-4">
+        <div className="flex items-baseline justify-between mb-4 tabular-nums">
           <div>
-            <span className="text-2xl font-normal text-white">${INITIAL_BOOKING_DATA.pricePerNight}</span>
+            <span className="text-2xl font-normal text-white">${pricePerNight}</span>
             <span className="text-xs text-white/60">/night</span>
             <span className="block text-[11px] text-amber-300/80 font-light mt-0.5">
-              {nights} night{nights > 1 ? 's' : ''} · ${nights * INITIAL_BOOKING_DATA.pricePerNight} total
+              {nights} night{nights > 1 ? 's' : ''} · ${nights * pricePerNight} total
             </span>
           </div>
-          <span className="text-xs text-white/70 font-light">{INITIAL_BOOKING_DATA.guestsRange}</span>
+          <span className="text-xs text-white/70 font-light">{guestsRange}</span>
         </div>
 
-        <Button variant="solid" className="w-full py-3 text-xs font-semibold">
-          Reserve · ${nights * INITIAL_BOOKING_DATA.pricePerNight}
+        <Button
+          variant="solid"
+          onClick={() => {
+            setReservedConfirmed(true);
+            setTimeout(() => setReservedConfirmed(false), 3500);
+          }}
+          className={`w-full py-3 text-xs font-semibold cursor-pointer ${
+            reservedConfirmed ? 'bg-amber-400 text-slate-950 hover:bg-amber-300' : ''
+          }`}
+        >
+          {reservedConfirmed
+            ? `Reserved ${title} (${formatDateShort(startDate)} – ${formatDateShort(endDate)})`
+            : `Reserve · $${nights * pricePerNight}`}
         </Button>
       </GlassCard>
     </div>
