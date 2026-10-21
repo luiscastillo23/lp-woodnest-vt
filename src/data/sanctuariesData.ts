@@ -1,3 +1,5 @@
+import { PropertyImagesTuple, assertValidPropertyImages } from '../types';
+
 export interface HouseGalleryImage {
   id: string;
   title: string;
@@ -5,6 +7,8 @@ export interface HouseGalleryImage {
   dimensions: string;
   caption: string;
   url: string;
+  /** Strictly 5 to 12 images of this specific inmueble/space; images[0] is the principal image */
+  images: PropertyImagesTuple<string>;
   focalPosition: string;
   hearthGlowPos: string;
 }
@@ -74,7 +78,10 @@ export interface DetailedSanctuary {
   elevationCurve: string;
   markerX: number;
   markerY: number;
-  gallery: HouseGalleryImage[];
+  /** Strictly 5 to 12 images; images[0] is the principal displayed image */
+  images: PropertyImagesTuple<string>;
+  /** Strictly 5 to 12 detailed gallery entries; gallery[0] is the principal displayed image */
+  gallery: PropertyImagesTuple<HouseGalleryImage>;
   activities: LocationActivity[];
   ratingSummary: {
     overall: number;
@@ -134,58 +141,165 @@ export const DETAILED_SANCTUARIES: DetailedSanctuary[] = [
     elevationCurve: 'M 0 110 C 120 105, 210 68, 340 48 C 460 30, 560 72, 720 88',
     markerX: 340,
     markerY: 48,
-    gallery: [
-      {
-        id: 'ev-ext',
-        title: 'Western Twilight Gable & River Overlook',
-        roomTag: 'Exterior Architecture',
-        dimensions: '5.4m Ridge Height · Cantilevered Steel & Cedar',
-        caption: 'Evening hearth glow radiating into the old-growth Douglas fir canopy above the glacial river bend.',
-        url: 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=2000&q=85',
-        focalPosition: 'center 55%',
-        hearthGlowPos: '48% 60%',
-      },
-      {
-        id: 'ev-living',
-        title: 'Double-Height Hearth & Basalt Living Hall',
-        roomTag: 'Great Room',
-        dimensions: '54 m² · 360° Suspended Cast-Iron Fireplace',
-        caption: 'Hand-rubbed Western red cedar acoustic ceiling with heated basalt stone floors and seasoned birch firewood.',
-        url: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1800&q=85',
-        focalPosition: 'center 50%',
-        hearthGlowPos: '52% 58%',
-      },
-      {
-        id: 'ev-master',
-        title: 'Canopy Sky-Roof Primary Suite',
-        roomTag: 'Primary Suite',
-        dimensions: '32 m² · Heated Stargazing Skylight',
-        caption: 'Organic raw-wool mattress positioned directly beneath a zero-condensation zenith glass roof.',
-        url: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1800&q=85',
-        focalPosition: 'center 60%',
-        hearthGlowPos: '45% 55%',
-      },
-      {
-        id: 'ev-deck',
-        title: 'Riverfront Japanese Cedar Hinoki Soaking Tub',
-        roomTag: 'Thermal Deck',
-        dimensions: '46 m² · 40°C Spring-Fed Thermal Soak',
-        caption: 'Private timber deck suspended over the fern ravine with wood-fired soaking tub and outdoor rain shower.',
-        url: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1800&q=85',
-        focalPosition: 'center 52%',
-        hearthGlowPos: '50% 62%',
-      },
-      {
-        id: 'ev-kitchen',
-        title: 'Monolithic Basalt Kitchen & Chef Table',
-        roomTag: 'Kitchen & Dining',
-        dimensions: '28 m² · Gaggenau Induction & Wine Cellar',
-        caption: 'Custom blackened-steel island stocked with Pacific Northwest biodynamic wines and artisan pour-over coffee gear.',
-        url: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=85',
-        focalPosition: 'center 48%',
-        hearthGlowPos: '54% 52%',
-      },
-    ],
+    images: assertValidPropertyImages(
+      [
+        'https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=2000&q=85',
+        'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1800&q=85',
+      ],
+      'evergreen-valley'
+    ),
+    gallery: assertValidPropertyImages(
+      [
+        {
+          id: 'ev-ext',
+          title: 'Western Twilight Gable & River Overlook',
+          roomTag: 'Principal Exterior',
+          dimensions: '5.4m Ridge Height · Cantilevered Steel & Cedar',
+          caption: 'Evening hearth glow radiating into the old-growth Douglas fir canopy above the glacial river bend.',
+          url: 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=2000&q=85',
+          images: assertValidPropertyImages(
+            [
+              'https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=2000&q=85',
+              'https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1510312305653-8ed496efae75?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1800&q=85',
+            ],
+            'ev-ext'
+          ),
+          focalPosition: 'center 55%',
+          hearthGlowPos: '48% 60%',
+        },
+        {
+          id: 'ev-living',
+          title: 'Double-Height Hearth & Basalt Living Hall',
+          roomTag: 'Great Room',
+          dimensions: '54 m² · 360° Suspended Cast-Iron Fireplace',
+          caption: 'Hand-rubbed Western red cedar acoustic ceiling with heated basalt stone floors and seasoned birch firewood.',
+          url: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1800&q=85',
+          images: assertValidPropertyImages(
+            [
+              'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1800&q=85',
+            ],
+            'ev-living'
+          ),
+          focalPosition: 'center 50%',
+          hearthGlowPos: '52% 58%',
+        },
+        {
+          id: 'ev-master',
+          title: 'Canopy Sky-Roof Primary Suite',
+          roomTag: 'Primary Suite',
+          dimensions: '32 m² · Heated Stargazing Skylight',
+          caption: 'Organic raw-wool mattress positioned directly beneath a zero-condensation zenith glass roof.',
+          url: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1800&q=85',
+          images: assertValidPropertyImages(
+            [
+              'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=1800&q=85',
+            ],
+            'ev-master'
+          ),
+          focalPosition: 'center 60%',
+          hearthGlowPos: '45% 55%',
+        },
+        {
+          id: 'ev-deck',
+          title: 'Riverfront Japanese Cedar Hinoki Soaking Tub',
+          roomTag: 'Thermal Deck',
+          dimensions: '46 m² · 40°C Spring-Fed Thermal Soak',
+          caption: 'Private timber deck suspended over the fern ravine with wood-fired soaking tub and outdoor rain shower.',
+          url: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1800&q=85',
+          images: assertValidPropertyImages(
+            [
+              'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1510312305653-8ed496efae75?auto=format&fit=crop&w=1800&q=85',
+            ],
+            'ev-deck'
+          ),
+          focalPosition: 'center 52%',
+          hearthGlowPos: '50% 62%',
+        },
+        {
+          id: 'ev-kitchen',
+          title: 'Monolithic Basalt Kitchen & Chef Table',
+          roomTag: 'Kitchen & Dining',
+          dimensions: '28 m² · Gaggenau Induction & Wine Cellar',
+          caption: 'Custom blackened-steel island stocked with Pacific Northwest biodynamic wines and artisan pour-over coffee gear.',
+          url: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=85',
+          images: assertValidPropertyImages(
+            [
+              'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1800&q=85',
+            ],
+            'ev-kitchen'
+          ),
+          focalPosition: 'center 48%',
+          hearthGlowPos: '54% 52%',
+        },
+        {
+          id: 'ev-loft',
+          title: 'Canopy Glass Study & Acoustic Listening Loft',
+          roomTag: 'Reading Loft',
+          dimensions: '20 m² · Cantilevered Fir Desk & Analog Hi-Fi',
+          caption: 'Upper-level timber mezzanine overlooking the river bend with curated architectural monographs.',
+          url: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1800&q=85',
+          images: assertValidPropertyImages(
+            [
+              'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=1800&q=85',
+            ],
+            'ev-loft'
+          ),
+          focalPosition: 'center 50%',
+          hearthGlowPos: '48% 55%',
+        },
+        {
+          id: 'ev-bath',
+          title: 'Columbia Basalt Wet Room & Forest Rain Shower',
+          roomTag: 'Basalt Bath',
+          dimensions: '18 m² · Radiant Stone Slab & Skylight',
+          caption: 'Floor-to-ceiling honed basalt wet room with brass rain-head and direct access to the cedar soaking terrace.',
+          url: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1800&q=85',
+          images: assertValidPropertyImages(
+            [
+              'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=1800&q=85',
+            ],
+            'ev-bath'
+          ),
+          focalPosition: 'center 50%',
+          hearthGlowPos: '50% 55%',
+        },
+      ],
+      'evergreen-valley'
+    ),
     activities: [
       {
         id: 'ev-act-sauna',
@@ -343,58 +457,143 @@ export const DETAILED_SANCTUARIES: DetailedSanctuary[] = [
     elevationCurve: 'M 0 35 C 140 38, 240 42, 390 74 C 510 98, 610 104, 720 108',
     markerX: 390,
     markerY: 74,
-    gallery: [
-      {
-        id: 'af-ext',
-        title: 'Cantilevered Cliff-Edge Glass Pavilion',
-        roomTag: 'Exterior Architecture',
-        dimensions: '640m Above Aurlandsfjord · Charred Heart-Pine',
-        caption: 'Suspended above the fjord twilight with warm amber firelight reflecting across the granite ledge.',
-        url: 'https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=2000&q=85',
-        focalPosition: 'center 50%',
-        hearthGlowPos: '44% 58%',
-      },
-      {
-        id: 'af-living',
-        title: '270° Fjord Lookout Lounge & Hearth',
-        roomTag: 'Great Room',
-        dimensions: '48 m² · Mullion-Free Corner Glazing',
-        caption: 'Norwegian wool lounge seating oriented toward the fjord bend and distant snowfields.',
-        url: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=85',
-        focalPosition: 'center 54%',
-        hearthGlowPos: '50% 60%',
-      },
-      {
-        id: 'af-sauna',
-        title: 'Cliffside Wood-Fired Cedar Sauna',
-        roomTag: 'Thermal Ritual',
-        dimensions: '14 m² · Direct Fjord Horizon Window',
-        caption: 'Birch-stoked sauna perched on the western rock outcrop with outdoor cold-water deluge shower.',
-        url: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1800&q=85',
-        focalPosition: 'center 48%',
-        hearthGlowPos: '48% 58%',
-      },
-      {
-        id: 'af-bed',
-        title: 'Aurora Sky-Frame Master Bedroom',
-        roomTag: 'Primary Suite',
-        dimensions: '28 m² · North-West Aurora Borealis Aspect',
-        caption: 'Heated acoustic glass roof engineered for watching the northern lights from beneath goose-down duvets.',
-        url: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1800&q=85',
-        focalPosition: 'center 58%',
-        hearthGlowPos: '46% 52%',
-      },
-      {
-        id: 'af-dining',
-        title: 'Smoked Oak Nordic Kitchen & Fjord Bar',
-        roomTag: 'Kitchen & Dining',
-        dimensions: '24 m² · Handcrafted Alta Slate Countertops',
-        caption: 'Equipped with a Nordic fermentation pantry, artisanal aquavit selection, and fjord-water filtration.',
-        url: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1800&q=85',
-        focalPosition: 'center 52%',
-        hearthGlowPos: '52% 56%',
-      },
-    ],
+    images: assertValidPropertyImages(
+      [
+        'https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=2000&q=85',
+        'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1507272931001-fc06c17e4f43?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=1800&q=85',
+      ],
+      'aurlandsfjord-ridge'
+    ),
+    gallery: assertValidPropertyImages(
+      [
+        {
+          id: 'af-ext',
+          title: 'Cantilevered Cliff-Edge Glass Pavilion',
+          roomTag: 'Principal Exterior',
+          dimensions: '640m Above Aurlandsfjord · Charred Heart-Pine',
+          caption: 'Suspended above the fjord twilight with warm amber firelight reflecting across the granite ledge.',
+          url: 'https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=2000&q=85',
+          images: assertValidPropertyImages(
+            [
+              'https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=2000&q=85',
+              'https://images.unsplash.com/photo-1507272931001-fc06c17e4f43?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1800&q=85',
+            ],
+            'af-ext'
+          ),
+          focalPosition: 'center 50%',
+          hearthGlowPos: '44% 58%',
+        },
+        {
+          id: 'af-living',
+          title: '270° Fjord Lookout Lounge & Hearth',
+          roomTag: 'Great Room',
+          dimensions: '48 m² · Mullion-Free Corner Glazing',
+          caption: 'Norwegian wool lounge seating oriented toward the fjord bend and distant snowfields.',
+          url: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1800&q=85',
+          images: assertValidPropertyImages(
+            [
+              'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1507272931001-fc06c17e4f43?auto=format&fit=crop&w=1800&q=85',
+            ],
+            'af-living'
+          ),
+          focalPosition: 'center 54%',
+          hearthGlowPos: '50% 60%',
+        },
+        {
+          id: 'af-sauna',
+          title: 'Cliffside Wood-Fired Cedar Sauna & Fjord View',
+          roomTag: 'Thermal Ritual',
+          dimensions: '14 m² · Direct Fjord Horizon Window',
+          caption: 'Birch-stoked sauna perched on the western rock outcrop with outdoor cold-water deluge shower.',
+          url: 'https://images.unsplash.com/photo-1507272931001-fc06c17e4f43?auto=format&fit=crop&w=1800&q=85',
+          images: assertValidPropertyImages(
+            [
+              'https://images.unsplash.com/photo-1507272931001-fc06c17e4f43?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=1800&q=85',
+            ],
+            'af-sauna'
+          ),
+          focalPosition: 'center 48%',
+          hearthGlowPos: '48% 58%',
+        },
+        {
+          id: 'af-bed',
+          title: 'Aurora Sky-Frame Master Bedroom',
+          roomTag: 'Primary Suite',
+          dimensions: '28 m² · North-West Aurora Borealis Aspect',
+          caption: 'Heated acoustic glass roof engineered for watching the northern lights from beneath goose-down duvets.',
+          url: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1800&q=85',
+          images: assertValidPropertyImages(
+            [
+              'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1800&q=85',
+            ],
+            'af-bed'
+          ),
+          focalPosition: 'center 58%',
+          hearthGlowPos: '46% 52%',
+        },
+        {
+          id: 'af-dining',
+          title: 'Smoked Oak Nordic Kitchen & Fjord Bar',
+          roomTag: 'Kitchen & Dining',
+          dimensions: '24 m² · Handcrafted Alta Slate Countertops',
+          caption: 'Equipped with a Nordic fermentation pantry, artisanal aquavit selection, and fjord-water filtration.',
+          url: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1800&q=85',
+          images: assertValidPropertyImages(
+            [
+              'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1510312305653-8ed496efae75?auto=format&fit=crop&w=1800&q=85',
+            ],
+            'af-dining'
+          ),
+          focalPosition: 'center 52%',
+          hearthGlowPos: '52% 56%',
+        },
+        {
+          id: 'af-terrace',
+          title: 'Suspended Fjord Firepit & Granite Overlook Deck',
+          roomTag: 'Cliff Terrace',
+          dimensions: '38 m² · Corten Steel Hearth Over Aurlandsfjord',
+          caption: 'Cantilevered granite terrace with recessed wind-shielded fire bowl and heated sheepskin loungers.',
+          url: 'https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=1800&q=85',
+          images: assertValidPropertyImages(
+            [
+              'https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1507272931001-fc06c17e4f43?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1510312305653-8ed496efae75?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=1800&q=85',
+            ],
+            'af-terrace'
+          ),
+          focalPosition: 'center 54%',
+          hearthGlowPos: '48% 60%',
+        },
+      ],
+      'aurlandsfjord-ridge'
+    ),
     activities: [
       {
         id: 'af-act-boat',
@@ -539,58 +738,184 @@ export const DETAILED_SANCTUARIES: DetailedSanctuary[] = [
     elevationCurve: 'M 0 112 C 150 96, 290 42, 470 22 C 580 14, 650 48, 720 64',
     markerX: 470,
     markerY: 22,
-    gallery: [
-      {
-        id: 'dl-ext',
-        title: 'Alpenglow Larch Pavilion & Limestone Spires',
-        roomTag: 'Exterior Architecture',
-        dimensions: '1,840m Altitude · Brushed Alpine Larch',
-        caption: 'Set in golden autumn larch meadows beneath the towering walls of the Dolomites.',
-        url: 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=2000&q=85',
-        focalPosition: '62% 52%',
-        hearthGlowPos: '50% 60%',
-      },
-      {
-        id: 'dl-living',
-        title: 'Indoor-Outdoor Hearth & Dolomia Stone Salon',
-        roomTag: 'Great Room',
-        dimensions: '58 m² · Pass-Through Cast-Iron Fireplace',
-        caption: 'Ladin larch beams and custom Loden wool sofas framing the Sassolungo ridge.',
-        url: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1800&q=85',
-        focalPosition: 'center 52%',
-        hearthGlowPos: '48% 58%',
-      },
-      {
-        id: 'dl-spa',
-        title: 'Private Hay-Bath Sauna & Outdoor Hot Loggia',
-        roomTag: 'Thermal Suite',
-        dimensions: '30 m² · Alpine Herb Steam & Heated Pool',
-        caption: 'Traditional South Tyrolean mountain hay sauna and 39°C infinity vitality pool.',
-        url: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1800&q=85',
-        focalPosition: 'center 50%',
-        hearthGlowPos: '52% 62%',
-      },
-      {
-        id: 'dl-suite',
-        title: 'South-Tyrol Swiss Pine Master Sanctuary',
-        roomTag: 'Primary Suite',
-        dimensions: '34 m² · Aromatic Zirm (Cembra Pine) Timber',
-        caption: 'Crafted from untreated high-altitude Cembra pine proven to lower nighttime heart rate.',
-        url: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1800&q=85',
-        focalPosition: 'center 56%',
-        hearthGlowPos: '46% 54%',
-      },
-      {
-        id: 'dl-cellar',
-        title: 'Alto Adige Wine Library & Alpine Kitchen',
-        roomTag: 'Kitchen & Cellar',
-        dimensions: '32 m² · 48-Bottle Climate Wine Wall',
-        caption: 'Curated with high-altitude Kerner, Lagrein, and Pinot Nero vintages from neighboring Abbey cellars.',
-        url: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=85',
-        focalPosition: 'center 48%',
-        hearthGlowPos: '54% 52%',
-      },
-    ],
+    images: assertValidPropertyImages(
+      [
+        'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=2000&q=85',
+        'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1800&q=85',
+      ],
+      'dolomites-larch'
+    ),
+    gallery: assertValidPropertyImages(
+      [
+        {
+          id: 'dl-ext',
+          title: 'Alpenglow Larch Pavilion & Limestone Spires',
+          roomTag: 'Principal Exterior',
+          dimensions: '1,840m Altitude · Brushed Alpine Larch',
+          caption: 'Set in golden autumn larch meadows beneath the towering walls of the Dolomites.',
+          url: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=2000&q=85',
+          images: assertValidPropertyImages(
+            [
+              'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=2000&q=85',
+              'https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=1800&q=85',
+            ],
+            'dl-ext'
+          ),
+          focalPosition: '62% 52%',
+          hearthGlowPos: '50% 60%',
+        },
+        {
+          id: 'dl-living',
+          title: 'Indoor-Outdoor Hearth & Dolomia Stone Salon',
+          roomTag: 'Great Room',
+          dimensions: '58 m² · Pass-Through Cast-Iron Fireplace',
+          caption: 'Ladin larch beams and custom Loden wool sofas framing the Sassolungo ridge.',
+          url: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1800&q=85',
+          images: assertValidPropertyImages(
+            [
+              'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1800&q=85',
+            ],
+            'dl-living'
+          ),
+          focalPosition: 'center 52%',
+          hearthGlowPos: '48% 58%',
+        },
+        {
+          id: 'dl-spa',
+          title: 'Private Hay-Bath Sauna & Outdoor Hot Loggia',
+          roomTag: 'Thermal Suite',
+          dimensions: '30 m² · Alpine Herb Steam & Heated Pool',
+          caption: 'Traditional South Tyrolean mountain hay sauna and 39°C infinity vitality pool.',
+          url: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1800&q=85',
+          images: assertValidPropertyImages(
+            [
+              'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=1800&q=85',
+            ],
+            'dl-spa'
+          ),
+          focalPosition: 'center 50%',
+          hearthGlowPos: '52% 62%',
+        },
+        {
+          id: 'dl-suite',
+          title: 'South-Tyrol Swiss Pine Master Sanctuary',
+          roomTag: 'Primary Suite',
+          dimensions: '34 m² · Aromatic Zirm (Cembra Pine) Timber',
+          caption: 'Crafted from untreated high-altitude Cembra pine proven to lower nighttime heart rate.',
+          url: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1800&q=85',
+          images: assertValidPropertyImages(
+            [
+              'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1800&q=85',
+            ],
+            'dl-suite'
+          ),
+          focalPosition: 'center 56%',
+          hearthGlowPos: '46% 54%',
+        },
+        {
+          id: 'dl-cellar',
+          title: 'Alto Adige Wine Library & Alpine Kitchen',
+          roomTag: 'Kitchen & Cellar',
+          dimensions: '32 m² · 48-Bottle Climate Wine Wall',
+          caption: 'Curated with high-altitude Kerner, Lagrein, and Pinot Nero vintages from neighboring Abbey cellars.',
+          url: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=85',
+          images: assertValidPropertyImages(
+            [
+              'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1510312305653-8ed496efae75?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1800&q=85',
+            ],
+            'dl-cellar'
+          ),
+          focalPosition: 'center 48%',
+          hearthGlowPos: '54% 52%',
+        },
+        {
+          id: 'dl-loggia',
+          title: 'Sassolungo Alpenglow Sun Loggia & Trail Mudroom',
+          roomTag: 'Alpine Loggia',
+          dimensions: '52 m² · South-Facing Larch Terrace & Ski Room',
+          caption: 'Expansive outdoor larch deck oriented directly toward the evening Enrosadira limestone glow.',
+          url: 'https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=1800&q=85',
+          images: assertValidPropertyImages(
+            [
+              'https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1800&q=85',
+            ],
+            'dl-loggia'
+          ),
+          focalPosition: 'center 50%',
+          hearthGlowPos: '50% 58%',
+        },
+        {
+          id: 'dl-stube',
+          title: 'Ladin Timber Dining Stube & Sommelier Table',
+          roomTag: 'Dining Stube',
+          dimensions: '26 m² · Hand-Carved Larch & Dolomite Hearth',
+          caption: 'Intimate candlelit dining alcove designed for private high-altitude wine tastings and hearth dinners.',
+          url: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1800&q=85',
+          images: assertValidPropertyImages(
+            [
+              'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1510312305653-8ed496efae75?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1800&q=85',
+            ],
+            'dl-stube'
+          ),
+          focalPosition: 'center 52%',
+          hearthGlowPos: '50% 60%',
+        },
+        {
+          id: 'dl-observatory',
+          title: 'High-Alpine Zenith Stargazing Terrace',
+          roomTag: 'Sky Observatory',
+          dimensions: '24 m² · Heated Dolomite Loungers & Telescope Mount',
+          caption: 'Unobstructed Bortle Class 2 nocturnal sky above the 3,000-meter Dolomite peaks.',
+          url: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1800&q=85',
+          images: assertValidPropertyImages(
+            [
+              'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1800&q=85',
+            ],
+            'dl-observatory'
+          ),
+          focalPosition: 'center 45%',
+          hearthGlowPos: '48% 55%',
+        },
+      ],
+      'dolomites-larch'
+    ),
     activities: [
       {
         id: 'dl-act-via',
@@ -735,58 +1060,142 @@ export const DETAILED_SANCTUARIES: DetailedSanctuary[] = [
     elevationCurve: 'M 0 65 C 160 72, 290 86, 430 84 C 550 82, 640 92, 720 96',
     markerX: 430,
     markerY: 84,
-    gallery: [
-      {
-        id: 'hm-ext',
-        title: 'Over-Water Birch Cove Pavilion at Dusk',
-        roomTag: 'Exterior Architecture',
-        dimensions: 'Micro-Piling Foundation · Untouched Reindeer Moss',
-        caption: 'Warm hearth light mirrored across the still glacial lagoon beneath the Folgefonna ice cap.',
-        url: 'https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=2000&q=85',
-        focalPosition: '48% 65%',
-        hearthGlowPos: '44% 64%',
-      },
-      {
-        id: 'hm-living',
-        title: 'Waterline Hearth Salon & Birch Acoustic Ceiling',
-        roomTag: 'Great Room',
-        dimensions: '44 m² · Jøtul Cast-Iron Wood Stove',
-        caption: 'Positioned just 1.2 meters above the lagoon surface so water reflections dance across the birch ceiling.',
-        url: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1800&q=85',
-        focalPosition: 'center 52%',
-        hearthGlowPos: '50% 58%',
-      },
-      {
-        id: 'hm-dock',
-        title: 'Glacial Lagoon Plunge Deck & Floating Sauna',
-        roomTag: 'Thermal Dock',
-        dimensions: '42 m² · Heated Brass Ladder & Towel Warmer',
-        caption: 'Step directly from the 90°C birch-fired sauna into crystal-clear 6°C glacier meltwater.',
-        url: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1800&q=85',
-        focalPosition: 'center 50%',
-        hearthGlowPos: '48% 60%',
-      },
-      {
-        id: 'hm-bed',
-        title: 'Silver Birch Grove Primary Bedroom',
-        roomTag: 'Primary Suite',
-        dimensions: '26 m² · Corner Glass into Moss Forest',
-        caption: 'Surrounded by white birch trunks and soft moss carpet with blackout linen drapery.',
-        url: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1800&q=85',
-        focalPosition: 'center 55%',
-        hearthGlowPos: '45% 54%',
-      },
-      {
-        id: 'hm-tea',
-        title: 'Nordic Botanical Pantry & Cider Bar',
-        roomTag: 'Kitchen & Pantry',
-        dimensions: '22 m² · Hardanger Heirloom Cider Cellar',
-        caption: 'Stocked with award-winning Hardanger apple ciders, wild cloudberry preserves, and cast-iron cookware.',
-        url: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=85',
-        focalPosition: 'center 48%',
-        hearthGlowPos: '52% 52%',
-      },
-    ],
+    images: assertValidPropertyImages(
+      [
+        'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=2000&q=85',
+        'https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1510312305653-8ed496efae75?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1800&q=85',
+      ],
+      'hardanger-moss'
+    ),
+    gallery: assertValidPropertyImages(
+      [
+        {
+          id: 'hm-ext',
+          title: 'Over-Water Birch Cove Pavilion at Dusk',
+          roomTag: 'Principal Exterior',
+          dimensions: 'Micro-Piling Foundation · Untouched Reindeer Moss',
+          caption: 'Warm hearth light mirrored across the still glacial lagoon beneath the Folgefonna ice cap.',
+          url: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=2000&q=85',
+          images: assertValidPropertyImages(
+            [
+              'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=2000&q=85',
+              'https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1507272931001-fc06c17e4f43?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=1800&q=85',
+            ],
+            'hm-ext'
+          ),
+          focalPosition: '48% 65%',
+          hearthGlowPos: '44% 64%',
+        },
+        {
+          id: 'hm-living',
+          title: 'Waterline Hearth Salon & Birch Acoustic Ceiling',
+          roomTag: 'Great Room',
+          dimensions: '44 m² · Jøtul Cast-Iron Wood Stove',
+          caption: 'Positioned just 1.2 meters above the lagoon surface so water reflections dance across the birch ceiling.',
+          url: 'https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=1800&q=85',
+          images: assertValidPropertyImages(
+            [
+              'https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1800&q=85',
+            ],
+            'hm-living'
+          ),
+          focalPosition: 'center 52%',
+          hearthGlowPos: '50% 58%',
+        },
+        {
+          id: 'hm-dock',
+          title: 'Glacial Lagoon Plunge Deck & Floating Sauna',
+          roomTag: 'Thermal Dock',
+          dimensions: '42 m² · Heated Brass Ladder & Towel Warmer',
+          caption: 'Step directly from the 90°C birch-fired sauna into crystal-clear 6°C glacier meltwater.',
+          url: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1800&q=85',
+          images: assertValidPropertyImages(
+            [
+              'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1507272931001-fc06c17e4f43?auto=format&fit=crop&w=1800&q=85',
+            ],
+            'hm-dock'
+          ),
+          focalPosition: 'center 50%',
+          hearthGlowPos: '48% 60%',
+        },
+        {
+          id: 'hm-bed',
+          title: 'Silver Birch Grove Primary Bedroom & Wet Room',
+          roomTag: 'Primary Suite',
+          dimensions: '26 m² · Corner Glass into Moss Forest',
+          caption: 'Surrounded by white birch trunks and soft moss carpet with blackout linen drapery.',
+          url: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1800&q=85',
+          images: assertValidPropertyImages(
+            [
+              'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1800&q=85',
+            ],
+            'hm-bed'
+          ),
+          focalPosition: 'center 55%',
+          hearthGlowPos: '45% 54%',
+        },
+        {
+          id: 'hm-tea',
+          title: 'Nordic Botanical Pantry & Ember Cider Deck',
+          roomTag: 'Kitchen & Pantry',
+          dimensions: '22 m² · Hardanger Heirloom Cider Cellar',
+          caption: 'Stocked with award-winning Hardanger apple ciders, wild cloudberry preserves, and cast-iron cookware.',
+          url: 'https://images.unsplash.com/photo-1510312305653-8ed496efae75?auto=format&fit=crop&w=1800&q=85',
+          images: assertValidPropertyImages(
+            [
+              'https://images.unsplash.com/photo-1510312305653-8ed496efae75?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1800&q=85',
+            ],
+            'hm-tea'
+          ),
+          focalPosition: 'center 48%',
+          hearthGlowPos: '52% 52%',
+        },
+        {
+          id: 'hm-net',
+          title: 'Suspended Over-Water Meditation Net & Cove Deck',
+          roomTag: 'Lagoon Deck',
+          dimensions: '20 m² · Hand-Woven Marine Net Above Glacier Water',
+          caption: 'Cantilevered directly over the mirror-still glacial basin surrounded by untouched silver birch.',
+          url: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1800&q=85',
+          images: assertValidPropertyImages(
+            [
+              'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1800&q=85',
+              'https://images.unsplash.com/photo-1507272931001-fc06c17e4f43?auto=format&fit=crop&w=1800&q=85',
+            ],
+            'hm-net'
+          ),
+          focalPosition: 'center 55%',
+          hearthGlowPos: '46% 58%',
+        },
+      ],
+      'hardanger-moss'
+    ),
     activities: [
       {
         id: 'hm-act-glacier',

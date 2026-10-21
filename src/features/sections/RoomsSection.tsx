@@ -3,7 +3,7 @@ import { Star, Check, Flame, ArrowUpRight, Layers, Compass, VolumeX, Thermometer
 import { motion, AnimatePresence } from 'framer-motion';
 import { GlassCard } from '../../components/ui/GlassCard';
 import { Button } from '../../components/ui/Button';
-import { CabinRoom } from '../../types';
+import { CabinRoom, assertValidPropertyImages } from '../../types';
 
 interface ExtendedCabinRoom extends CabinRoom {
   dimensionsMetric: string;
@@ -42,7 +42,17 @@ const CABIN_ROOMS: ExtendedCabinRoom[] = [
       'Chef-grade induction kitchen & espresso bar',
     ],
     architecturalNote: 'Acoustic triple-glazing with zero exterior light bleed.',
-    imageUrl: 'lodge',
+    images: assertValidPropertyImages(
+      [
+        'https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=2000&q=85',
+        'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1800&q=85',
+      ],
+      'pine-family-lodge'
+    ),
     focalCrop: '45% 55%',
     hearthPos: '45% 63%',
     hueFilter: 'hue-rotate(155deg) saturate(0.55) brightness(0.64)',
@@ -76,7 +86,16 @@ const CABIN_ROOMS: ExtendedCabinRoom[] = [
       'Organic flax linen bedding & heated wool throws',
     ],
     architecturalNote: 'Zero-footprint micropile foundation preserving tree roots.',
-    imageUrl: 'aframe',
+    images: assertValidPropertyImages(
+      [
+        'https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=2000&q=85',
+        'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1800&q=85',
+      ],
+      'nordic-glass-aframe'
+    ),
     focalCrop: '52% 42%',
     hearthPos: '48% 58%',
     hueFilter: 'hue-rotate(165deg) saturate(0.50) brightness(0.60)',
@@ -110,7 +129,18 @@ const CABIN_ROOMS: ExtendedCabinRoom[] = [
       'Dedicated fiber-optic satellite workspace nook',
     ],
     architecturalNote: 'Charred Shou Sugi Ban cedar exterior for weather resilience.',
-    imageUrl: 'pavilion',
+    images: assertValidPropertyImages(
+      [
+        'https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=2000&q=85',
+        'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1507272931001-fc06c17e4f43?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1800&q=85',
+      ],
+      'cliffside-cedar-pavilion'
+    ),
     focalCrop: '38% 60%',
     hearthPos: '43% 65%',
     hueFilter: 'hue-rotate(150deg) saturate(0.58) brightness(0.62)',
@@ -220,8 +250,7 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({
                 <div
                   className="absolute inset-0 bg-cover bg-no-repeat transition-all duration-700 scale-105"
                   style={{
-                    backgroundImage:
-                      "url('https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=2000&q=85')",
+                    backgroundImage: `url('${activeRoom.images[0]}')`,
                     backgroundPosition: activeRoom.focalCrop,
                     filter: activeRoom.hueFilter,
                   }}

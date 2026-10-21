@@ -78,6 +78,7 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
   };
 
   const [activeImageIndex, setActiveImageIndex] = useState<number>(0);
+  const [selectedPropertyImageIndex, setSelectedPropertyImageIndex] = useState<number>(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState<boolean>(false);
   const [nights, setNights] = useState<number>(3);
   const [guests, setGuests] = useState<number>(2);
@@ -98,6 +99,7 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
   // Reset gallery index & default activity when switching sanctuary
   useEffect(() => {
     setActiveImageIndex(0);
+    setSelectedPropertyImageIndex(0);
     setSelectedActivityIds(
       sanctuary.activities[0] ? [sanctuary.activities[0].id] : []
     );
@@ -105,8 +107,15 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [sanctuary.id]);
 
+  // Reset property sub-image index when switching selected inmueble
+  useEffect(() => {
+    setSelectedPropertyImageIndex(0);
+  }, [activeImageIndex]);
+
   const activePhoto =
     sanctuary.gallery[activeImageIndex] || sanctuary.gallery[0];
+  const currentDisplayedImageUrl =
+    activePhoto.images[selectedPropertyImageIndex] || activePhoto.url;
 
   const toggleActivity = (activityId: string) => {
     setBookingConfirmed(false);
@@ -304,13 +313,13 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
 
             {/* Interactive Principal House Image + Rest of House Gallery */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
-              {/* Principal Image Stage (8 Columns) */}
-              <div className="lg:col-span-8">
-                <div className="relative h-[420px] sm:h-[540px] w-full rounded-3xl overflow-hidden border border-white/15 bg-[#12262b] group">
+              {/* Principal Image Stage + Bottom Property Photo Gallery (8 Columns) */}
+              <div className="lg:col-span-8 flex flex-col justify-between gap-4">
+                <div className="relative h-[420px] sm:h-[520px] lg:flex-1 w-full rounded-3xl overflow-hidden border border-white/15 bg-[#12262b] group">
                   <AnimatePresence mode="wait">
                     <motion.img
-                      key={activePhoto.id}
-                      src={activePhoto.url}
+                      key={`${activePhoto.id}-${selectedPropertyImageIndex}`}
+                      src={currentDisplayedImageUrl}
                       alt={activePhoto.title}
                       referrerPolicy="no-referrer"
                       initial={{ opacity: 0, scale: 1.03 }}
@@ -341,7 +350,8 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
                   <div className="absolute top-5 left-6 right-6 flex items-center justify-between gap-3 z-10">
                     <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#091518]/80 border border-white/15 backdrop-blur-md text-xs text-white/90 tabular-nums">
                       <span className="text-amber-400 font-medium">
-                        0{activeImageIndex + 1} / 0{sanctuary.gallery.length}
+                        {String(activeImageIndex + 1).padStart(2, '0')} /{' '}
+                        {String(sanctuary.gallery.length).padStart(2, '0')}
                       </span>
                       <span className="text-white/30" aria-hidden="true">·</span>
                       <span>{activePhoto.roomTag}</span>
@@ -399,6 +409,47 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
                       </p>
                     </div>
                   </div>
+                </div>
+
+                {/* Selected Inmueble Image Gallery (5–12 Images of the Active Inmueble) */}
+                <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-6 gap-3">
+                  {activePhoto.images.map((imageUrl, imageIndex) => {
+                    const isCurrentImage = imageIndex === selectedPropertyImageIndex;
+                    return (
+                      <button
+                        key={`${activePhoto.id}-img-${imageIndex}`}
+                        type="button"
+                        onClick={() => setSelectedPropertyImageIndex(imageIndex)}
+                        aria-label={`${activePhoto.title} photo ${imageIndex + 1} of ${activePhoto.images.length}`}
+                        aria-pressed={isCurrentImage}
+                        className={`group relative h-20 sm:h-24 w-full rounded-2xl overflow-hidden border transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 ${
+                          isCurrentImage
+                            ? 'border-amber-400 ring-1 ring-amber-400/50 shadow-md'
+                            : 'border-white/15 opacity-75 hover:opacity-100 hover:border-white/35'
+                        }`}
+                      >
+                        <img
+                          src={imageUrl}
+                          alt={`${activePhoto.title} - View ${imageIndex + 1}`}
+                          referrerPolicy="no-referrer"
+                          loading="lazy"
+                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          style={{
+                            filter: 'saturate(0.85) contrast(1.04) brightness(0.86)',
+                          }}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#091518]/65 via-transparent to-transparent" />
+
+                        <span
+                          className={`absolute bottom-1.5 right-2 text-[10px] font-medium tabular-nums px-1.5 py-0.5 rounded bg-[#091518]/75 backdrop-blur-sm ${
+                            isCurrentImage ? 'text-amber-300' : 'text-white/80'
+                          }`}
+                        >
+                          {String(imageIndex + 1).padStart(2, '0')}
+                        </span>
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
 

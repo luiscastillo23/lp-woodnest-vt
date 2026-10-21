@@ -4,7 +4,7 @@ import { Compass, MapPin, ArrowUpRight, Mountain, Wind, Trees, Navigation, Sun }
 import { motion, AnimatePresence } from 'framer-motion';
 import { GlassCard } from '../../components/ui/GlassCard';
 import { Button } from '../../components/ui/Button';
-import { SanctuaryLocation } from '../../types';
+import { SanctuaryLocation, assertValidPropertyImages } from '../../types';
 
 interface ExtendedSanctuaryLocation extends SanctuaryLocation {
   elevationMeters: number;
@@ -42,7 +42,18 @@ const SANCTUARY_LOCATIONS: ExtendedSanctuaryLocation[] = [
       'Direct trailhead access to Alpine Lakes Wilderness',
       'Zero light pollution — Bortle Class 1 night sky',
     ],
-    imageUrl: 'evergreen',
+    images: assertValidPropertyImages(
+      [
+        'https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=2000&q=85',
+        'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1800&q=85',
+      ],
+      'evergreen-valley'
+    ),
     focalPosition: 'center 58%',
     hearthGlowPos: '46% 62%',
     hueFilter: 'hue-rotate(155deg) saturate(0.55) brightness(0.62)',
@@ -72,7 +83,17 @@ const SANCTUARY_LOCATIONS: ExtendedSanctuaryLocation[] = [
       'Wood-fired cantilevered sauna over the cliff edge',
       'Private electric boat mooring at fjord base',
     ],
-    imageUrl: 'nordic',
+    images: assertValidPropertyImages(
+      [
+        'https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=2000&q=85',
+        'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1507272931001-fc06c17e4f43?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=1800&q=85',
+      ],
+      'aurlandsfjord-ridge'
+    ),
     focalPosition: '35% 48%',
     hearthGlowPos: '42% 58%',
     hueFilter: 'hue-rotate(168deg) saturate(0.5) brightness(0.58)',
@@ -102,7 +123,19 @@ const SANCTUARY_LOCATIONS: ExtendedSanctuaryLocation[] = [
       'Indoor-outdoor cast-iron hearth fireplace',
       'Daily mountain breakfast basket delivered at dawn',
     ],
-    imageUrl: 'alpine',
+    images: assertValidPropertyImages(
+      [
+        'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=2000&q=85',
+        'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1800&q=85',
+      ],
+      'dolomites-larch'
+    ),
     focalPosition: '62% 52%',
     hearthGlowPos: '50% 60%',
     hueFilter: 'hue-rotate(148deg) saturate(0.6) brightness(0.60)',
@@ -132,7 +165,17 @@ const SANCTUARY_LOCATIONS: ExtendedSanctuaryLocation[] = [
       'Cold-plunge lagoon ladder with heated towel rack',
       '100% off-grid solar and micro-hydro energy',
     ],
-    imageUrl: 'hardanger',
+    images: assertValidPropertyImages(
+      [
+        'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=2000&q=85',
+        'https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1510312305653-8ed496efae75?auto=format&fit=crop&w=1800&q=85',
+        'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1800&q=85',
+      ],
+      'hardanger-moss'
+    ),
     focalPosition: '48% 65%',
     hearthGlowPos: '44% 64%',
     hueFilter: 'hue-rotate(160deg) saturate(0.52) brightness(0.60)',
@@ -253,12 +296,11 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
             <GlassCard className="w-full flex flex-col justify-between p-0 overflow-hidden border-white/15 bg-[#091518]/80 backdrop-blur-2xl">
               {/* Top Atmospheric / Cartographic Viewport matching Hero FrameContainer */}
               <div className="relative h-80 sm:h-[360px] w-full overflow-hidden bg-[#12262b] border-b border-white/10">
-                {/* Base Twilight Forest Layer (Same visual treatment as Hero FrameContainer) */}
+                {/* Base Twilight Forest Layer — Displays Principal Image (images[0]) */}
                 <div
                   className="absolute inset-0 bg-cover bg-no-repeat transition-all duration-700 scale-105"
                   style={{
-                    backgroundImage:
-                      "url('https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=2000&q=85')",
+                    backgroundImage: `url('${activeLocation.images[0]}')`,
                     backgroundPosition: activeLocation.focalPosition,
                     filter: activeLocation.hueFilter,
                   }}
