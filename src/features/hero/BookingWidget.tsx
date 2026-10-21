@@ -336,12 +336,12 @@ export const BookingWidget: React.FC<BookingWidgetProps> = ({
           <AnimatePresence>
             {isCalendarOpen && (
               <motion.div
-                initial={{ opacity: 0, y: -8, scale: 0.98 }}
+                initial={{ opacity: 0, y: -6, scale: 0.98 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -6, scale: 0.98 }}
-                transition={{ duration: 0.2, ease: 'easeOut' }}
+                exit={{ opacity: 0, y: -4, scale: 0.98 }}
+                transition={{ duration: 0.18, ease: 'easeOut' }}
                 onClick={(e) => e.stopPropagation()}
-                className="absolute top-[calc(100%+8px)] -left-2 -right-2 z-50 rounded-2xl bg-[#091518]/98 backdrop-blur-2xl border border-amber-400/40 shadow-[0_16px_40px_rgba(0,0,0,0.85)] p-3.5 text-white cursor-default"
+                className="absolute top-[calc(100%+6px)] -left-2 -right-2 z-50 rounded-2xl bg-[#091518]/98 backdrop-blur-2xl border border-amber-400/40 shadow-[0_16px_40px_rgba(0,0,0,0.85)] p-2.5 text-white cursor-default"
               >
                 {/* Visual Pointer Arrow aligned with active date field */}
                 <div
@@ -351,7 +351,7 @@ export const BookingWidget: React.FC<BookingWidgetProps> = ({
                 />
 
                 {/* Field Mode Switcher Tabs inside Calendar */}
-                <div className="grid grid-cols-2 gap-1.5 bg-white/5 p-1 rounded-lg mb-2.5 border border-white/10">
+                <div className="grid grid-cols-2 gap-1 bg-white/5 p-1 rounded-lg mb-1.5 border border-white/10">
                   <button
                     type="button"
                     onClick={() => {
@@ -359,14 +359,14 @@ export const BookingWidget: React.FC<BookingWidgetProps> = ({
                       setValidationMessage(null);
                       setCurrentViewDate(new Date(startDate.getFullYear(), startDate.getMonth(), 1));
                     }}
-                    className={`py-1 px-2 rounded-md text-[10px] font-medium transition-all flex items-center justify-between ${
+                    className={`py-1 px-2 rounded-md text-[10px] font-medium transition-all flex items-center justify-between gap-1 whitespace-nowrap cursor-pointer ${
                       selectingTarget === 'from'
                         ? 'bg-amber-400 text-black shadow-sm'
                         : 'text-white/70 hover:text-white hover:bg-white/5'
                     }`}
                   >
-                    <span>Inicial (Check-in)</span>
-                    <span className="font-semibold">{formatDateShort(startDate)}</span>
+                    <span className="truncate">Inicial (Check-in)</span>
+                    <span className="font-semibold tabular-nums shrink-0">{formatDateShort(startDate)}</span>
                   </button>
                   <button
                     type="button"
@@ -375,50 +375,50 @@ export const BookingWidget: React.FC<BookingWidgetProps> = ({
                       setValidationMessage(null);
                       setCurrentViewDate(new Date(endDate.getFullYear(), endDate.getMonth(), 1));
                     }}
-                    className={`py-1 px-2 rounded-md text-[10px] font-medium transition-all flex items-center justify-between ${
+                    className={`py-1 px-2 rounded-md text-[10px] font-medium transition-all flex items-center justify-between gap-1 whitespace-nowrap cursor-pointer ${
                       selectingTarget === 'to'
                         ? 'bg-amber-400 text-black shadow-sm'
                         : 'text-white/70 hover:text-white hover:bg-white/5'
                     }`}
                   >
-                    <span>Final (Check-out)</span>
-                    <span className="font-semibold">{formatDateShort(endDate)}</span>
+                    <span className="truncate">Final (Check-out)</span>
+                    <span className="font-semibold tabular-nums shrink-0">{formatDateShort(endDate)}</span>
                   </button>
                 </div>
 
                 {/* Header: Month / Year with Navigation & Close */}
-                <div className="flex items-center justify-between pb-2 mb-2 border-b border-white/10">
+                <div className="flex items-center justify-between pb-1.5 mb-1 border-b border-white/10">
                   <button
                     type="button"
                     onClick={handlePrevMonth}
                     disabled={!canGoPrevMonth}
                     aria-label="Previous month"
-                    className={`w-6 h-6 flex items-center justify-center rounded-lg transition-colors ${
+                    className={`w-5 h-5 flex items-center justify-center rounded-md transition-colors ${
                       canGoPrevMonth
                         ? 'hover:bg-white/10 text-white/80 hover:text-white cursor-pointer'
                         : 'text-white/20 cursor-not-allowed'
                     }`}
                   >
-                    <ChevronLeft className="w-4 h-4" />
+                    <ChevronLeft className="w-3.5 h-3.5" />
                   </button>
 
-                  <div className="text-xs font-semibold tracking-wide text-white">
+                  <div className="text-[11px] font-semibold tracking-wide text-white">
                     {MONTH_NAMES[viewMonth]} {viewYear}
                   </div>
 
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-0.5">
                     <button
                       type="button"
                       onClick={handleNextMonth}
                       disabled={!canGoNextMonth}
                       aria-label="Next month"
-                      className={`w-6 h-6 flex items-center justify-center rounded-lg transition-colors ${
+                      className={`w-5 h-5 flex items-center justify-center rounded-md transition-colors ${
                         canGoNextMonth
                           ? 'hover:bg-white/10 text-white/80 hover:text-white cursor-pointer'
                           : 'text-white/20 cursor-not-allowed'
                       }`}
                     >
-                      <ChevronRight className="w-4 h-4" />
+                      <ChevronRight className="w-3.5 h-3.5" />
                     </button>
                     <button
                       type="button"
@@ -427,7 +427,7 @@ export const BookingWidget: React.FC<BookingWidgetProps> = ({
                         setValidationMessage(null);
                       }}
                       aria-label="Close calendar"
-                      className="w-6 h-6 flex items-center justify-center rounded-lg hover:bg-white/10 text-white/50 hover:text-white transition-colors ml-0.5 cursor-pointer"
+                      className="w-5 h-5 flex items-center justify-center rounded-md hover:bg-white/10 text-white/50 hover:text-white transition-colors ml-0.5 cursor-pointer"
                     >
                       <X className="w-3.5 h-3.5" />
                     </button>
@@ -435,18 +435,18 @@ export const BookingWidget: React.FC<BookingWidgetProps> = ({
                 </div>
 
                 {/* Days of week header */}
-                <div className="grid grid-cols-7 gap-0.5 text-center mb-1 text-[10px] text-white/45 font-medium">
+                <div className="grid grid-cols-7 gap-0.5 text-center mb-0.5 text-[9px] text-white/45 font-medium">
                   {DAYS_OF_WEEK.map((day) => (
-                    <div key={day} className="py-0.5">
+                    <div key={day} className="leading-4">
                       {day}
                     </div>
                   ))}
                 </div>
 
                 {/* Calendar Days Grid */}
-                <div className="grid grid-cols-7 gap-0.5 text-center">
+                <div className="grid grid-cols-7 gap-0.5 text-center tabular-nums">
                   {Array.from({ length: firstDayOfMonth }).map((_, index) => (
-                    <div key={`empty-${index}`} className="h-6 w-full" />
+                    <div key={`empty-${index}`} className="h-5 w-full" />
                   ))}
 
                   {Array.from({ length: daysInMonth }).map((_, index) => {
@@ -465,7 +465,7 @@ export const BookingWidget: React.FC<BookingWidgetProps> = ({
                       cellDate <= hoveredDate;
 
                     let cellClass =
-                      'h-6 w-full text-[11px] rounded-md flex items-center justify-center transition-all select-none relative ';
+                      'h-5 w-full text-[10px] rounded-md flex items-center justify-center transition-all select-none relative ';
 
                     if (disabled) {
                       cellClass += 'text-white/20 cursor-not-allowed line-through decoration-white/20';
@@ -497,14 +497,14 @@ export const BookingWidget: React.FC<BookingWidgetProps> = ({
                 </div>
 
                 {/* Validation feedback or active rule info */}
-                <div className="mt-2 pt-2 border-t border-white/10">
+                <div className="mt-1.5 pt-1.5 border-t border-white/10">
                   {validationMessage ? (
-                    <div className="flex items-center gap-1.5 text-[10px] text-amber-300 bg-amber-400/10 border border-amber-400/30 rounded-lg px-2 py-1 mb-2">
+                    <div className="flex items-center gap-1.5 text-[9.5px] text-amber-300 bg-amber-400/10 border border-amber-400/30 rounded-lg px-2 py-1 mb-1.5">
                       <AlertCircle className="w-3 h-3 flex-shrink-0 text-amber-400" />
                       <span>{validationMessage}</span>
                     </div>
                   ) : (
-                    <div className="flex items-center justify-between text-[10px] text-white/45 mb-2 px-0.5">
+                    <div className="flex items-center justify-between text-[9.5px] text-white/45 mb-1 px-0.5 tabular-nums">
                       <span>
                         {selectingTarget === 'from'
                           ? `Permitido: Hoy (${formatDateShort(today)}) – ${formatDateShort(maxStartDate, today.getFullYear())}`
@@ -517,8 +517,8 @@ export const BookingWidget: React.FC<BookingWidgetProps> = ({
                   )}
 
                   {/* Footer with Summary & Confirm */}
-                  <div className="flex items-center justify-between">
-                    <div className="text-[11px] text-white/75 font-medium">
+                  <div className="flex items-center justify-between tabular-nums">
+                    <div className="text-[10.5px] text-white/80 font-medium">
                       {formatDateShort(startDate, today.getFullYear())} → {formatDateShort(endDate, today.getFullYear())}
                     </div>
                     <button
@@ -527,7 +527,7 @@ export const BookingWidget: React.FC<BookingWidgetProps> = ({
                         setIsCalendarOpen(false);
                         setValidationMessage(null);
                       }}
-                      className="flex items-center gap-1 px-3 py-1 rounded-lg bg-amber-400 hover:bg-amber-300 text-black font-semibold text-[11px] transition-colors shadow-sm cursor-pointer"
+                      className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-amber-400 hover:bg-amber-300 text-black font-semibold text-[10.5px] transition-colors shadow-sm cursor-pointer"
                     >
                       <Check className="w-3 h-3" />
                       Done
