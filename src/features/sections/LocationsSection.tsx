@@ -229,7 +229,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
   return (
     <section
       id="locations"
-      className="relative py-28 md:py-36 px-6 md:px-10 border-t border-white/10 bg-gradient-to-b from-[#0c1a1e] via-[#0d1f23] to-[#091518] overflow-hidden"
+      className="relative py-20 sm:py-28 md:py-36 px-4 sm:px-6 md:px-10 border-t border-white/10 bg-gradient-to-b from-[#0c1a1e] via-[#0d1f23] to-[#091518] overflow-hidden"
     >
       {/* Hero-Matched Screen-Blended Hearth Ambient Field */}
       <div
@@ -243,9 +243,9 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
 
       <div className="relative max-w-[1360px] mx-auto z-10">
         {/* Section Heading — No Eyebrow Kicker, Direct Hero-Scale Display Authority */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16">
-          <div className="space-y-4">
-            <h2 className="text-4xl sm:text-5xl md:text-[56px] font-light tracking-[-0.03em] leading-[1.04] text-white max-w-2xl text-balance">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 sm:gap-8 mb-10 sm:mb-16">
+          <div className="space-y-3 sm:space-y-4">
+            <h2 className="text-3xl sm:text-5xl md:text-[56px] font-light tracking-[-0.03em] leading-[1.04] text-white max-w-2xl text-balance">
               Remote Wilderness, Effortless Arrival
             </h2>
             <p className="text-xs md:text-sm text-white/70 font-light leading-relaxed max-w-lg text-pretty">
@@ -258,7 +258,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
           <div
             role="tablist"
             aria-label="Filter sanctuaries by region"
-            className="inline-flex items-center gap-1 p-1.5 rounded-full bg-[#091518]/90 border border-white/15 backdrop-blur-2xl overflow-x-auto self-start lg:self-end"
+            className="flex flex-wrap sm:inline-flex items-center gap-1 p-1.5 rounded-2xl sm:rounded-full bg-[#091518]/90 border border-white/15 backdrop-blur-2xl max-w-full self-start lg:self-end"
           >
             {REGIONS.map((region) => {
               const isActive = activeRegion === region;
@@ -276,7 +276,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
                         : SANCTUARY_LOCATIONS.find((l) => l.region === region);
                     if (firstMatch) setSelectedId(firstMatch.id);
                   }}
-                  className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-200 whitespace-nowrap shrink-0 cursor-pointer ${
+                  className={`px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl sm:rounded-full text-xs font-medium transition-all duration-200 whitespace-nowrap shrink-0 cursor-pointer ${
                     isActive
                       ? 'bg-amber-400 text-slate-950 shadow-sm'
                       : 'text-white/70 hover:text-white hover:bg-white/5'
@@ -290,12 +290,12 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
         </div>
 
         {/* Main 12-Column Architectural Frame */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-10 items-stretch">
           {/* Left 7 Columns: Primary GlassCard Sanctuary Viewport */}
           <div className="lg:col-span-7 flex">
             <GlassCard className="w-full flex flex-col justify-between p-0 overflow-hidden border-white/15 bg-[#091518]/80 backdrop-blur-2xl">
               {/* Top Atmospheric / Cartographic Viewport matching Hero FrameContainer */}
-              <div className="relative h-80 sm:h-[360px] w-full overflow-hidden bg-[#12262b] border-b border-white/10">
+              <div className="relative min-h-[320px] sm:min-h-[360px] w-full overflow-hidden bg-[#12262b] border-b border-white/10 p-4 sm:p-6 flex flex-col justify-between gap-8">
                 {/* Base Twilight Forest Layer — Displays Principal Image (images[0]) */}
                 <div
                   className="absolute inset-0 bg-cover bg-no-repeat transition-all duration-700 scale-105"
@@ -401,7 +401,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
                 </svg>
 
                 {/* Top Telemetry & View Mode Bar */}
-                <div className="absolute top-5 left-6 right-6 flex flex-wrap items-center justify-between gap-3 z-10">
+                <div className="relative z-10 flex flex-wrap items-center justify-between gap-2.5">
                   <div className="flex items-center gap-2 text-xs text-white/85 tabular-nums font-light">
                     <Compass className="w-3.5 h-3.5 text-amber-400 shrink-0" />
                     <span>{activeLocation.coordinates}</span>
@@ -437,9 +437,9 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
                 </div>
 
                 {/* Bottom Overlay Title & Nightly Rate */}
-                <div className="absolute bottom-6 left-6 right-6 flex flex-col sm:flex-row sm:items-end justify-between gap-4 z-10">
+                <div className="relative z-10 flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4">
                   <div>
-                    <div className="flex items-center gap-2 text-xs text-amber-300/95 mb-1.5 font-light">
+                    <div className="flex flex-wrap items-center gap-2 text-xs text-amber-300/95 mb-1.5 font-light">
                       <MapPin className="w-3.5 h-3.5 shrink-0" />
                       <span>{activeLocation.country}</span>
                       <span className="text-white/40" aria-hidden="true">·</span>
@@ -462,7 +462,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -4 }}
                         transition={{ duration: 0.2, ease: 'easeOut' }}
-                        className="group inline-flex items-center gap-2.5 text-2xl sm:text-3xl md:text-4xl font-light tracking-[-0.02em] text-white hover:text-amber-300 transition-colors cursor-pointer"
+                        className="group inline-flex items-center gap-2 text-2xl sm:text-3xl md:text-4xl font-light tracking-[-0.02em] text-white hover:text-amber-300 transition-colors cursor-pointer"
                       >
                         <span className="underline decoration-amber-400/50 underline-offset-8 group-hover:decoration-amber-300">
                           {activeLocation.name}
@@ -485,10 +485,10 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
               </div>
 
               {/* Lower Architectural Brief & Telemetry Strip */}
-              <div className="p-6 sm:p-8 flex-1 flex flex-col justify-between gap-7">
+              <div className="p-5 sm:p-8 flex-1 flex flex-col justify-between gap-6 sm:gap-7">
                 <div>
                   {/* Unboxed Environmental Telemetry Bar */}
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pb-6 mb-6 border-b border-white/10 tabular-nums">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 sm:gap-4 pb-5 sm:pb-6 mb-5 sm:mb-6 border-b border-white/10 tabular-nums">
                     <div>
                       <span className="block text-[11px] text-white/50 font-light mb-0.5">
                         Orientation & Aspect
@@ -506,7 +506,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
                         {activeLocation.bortleClass}
                       </span>
                     </div>
-                    <div className="col-span-2 sm:col-span-1">
+                    <div>
                       <span className="block text-[11px] text-white/50 font-light mb-0.5">
                         Seasonal Microclimate
                       </span>
@@ -517,12 +517,12 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
                     </div>
                   </div>
 
-                  <p className="text-sm text-white/80 font-light leading-relaxed mb-6 text-pretty">
+                  <p className="text-xs sm:text-sm text-white/80 font-light leading-relaxed mb-5 sm:mb-6 text-pretty">
                     {activeLocation.description}
                   </p>
 
                   {/* 3 Sanctuary Highlights separated by clean hairlines */}
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 pt-5 border-t border-white/10">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 pt-5 border-t border-white/10">
                     {activeLocation.highlights.map((item, idx) => (
                       <div key={idx} className="text-xs text-white/80 font-light leading-relaxed">
                         <span className="text-amber-400 font-medium block mb-1 tabular-nums">
@@ -544,11 +544,11 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
                     <span>{activeLocation.nearestTown}</span>
                   </div>
 
-                  <div className="flex flex-wrap items-center gap-2.5">
+                  <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 w-full sm:w-auto">
                     <Button
                       variant="glass"
                       onClick={() => handleOpenDetail(activeLocation.id)}
-                      className="gap-1.5 whitespace-nowrap shrink-0 text-xs font-medium cursor-pointer"
+                      className="w-full sm:w-auto justify-center gap-1.5 whitespace-nowrap shrink-0 text-xs font-medium cursor-pointer"
                     >
                       Explore Residence & Map
                       <ArrowUpRight className="w-3.5 h-3.5 text-amber-400" />
@@ -556,7 +556,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
                     <Button
                       variant="solid"
                       onClick={handleReserveLocation}
-                      className="gap-2 whitespace-nowrap shrink-0 text-xs font-semibold cursor-pointer"
+                      className="w-full sm:w-auto justify-center gap-2 whitespace-nowrap shrink-0 text-xs font-semibold cursor-pointer"
                     >
                       Reserve {activeLocation.name.split(' ')[0]}
                       <ArrowUpRight className="w-3.5 h-3.5" />
@@ -568,9 +568,9 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
           </div>
 
           {/* Right 5 Columns: Hairline-Divided Architectural Sanctuary Ledger (No Nested Cards) */}
-          <div className="lg:col-span-5 flex flex-col justify-between rounded-3xl bg-[#091518]/65 backdrop-blur-2xl border border-white/15 p-6 sm:p-7">
+          <div className="lg:col-span-5 flex flex-col justify-between rounded-3xl bg-[#091518]/65 backdrop-blur-2xl border border-white/15 p-5 sm:p-7">
             <div>
-              <div className="flex items-center justify-between pb-4 mb-2 border-b border-white/10">
+              <div className="flex items-center justify-between gap-2 pb-4 mb-4 border-b border-white/10">
                 <h3 className="text-sm font-normal text-white/90 tracking-tight">
                   Sanctuary Directory
                 </h3>
@@ -579,7 +579,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
                 </span>
               </div>
 
-              <div className="divide-y divide-white/10">
+              <div className="flex flex-col gap-3 sm:gap-3.5">
                 {filteredLocations.map((location, index) => {
                   const isSelected = location.id === activeLocation.id;
                   return (
@@ -587,13 +587,13 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
                       key={location.id}
                       type="button"
                       onClick={() => setSelectedId(location.id)}
-                      className={`w-full text-left py-5 px-4 -mx-4 rounded-2xl transition-all duration-200 cursor-pointer group ${
+                      className={`w-full text-left p-3.5 sm:p-4 rounded-2xl border transition-all duration-200 cursor-pointer group ${
                         isSelected
-                          ? 'bg-white/[0.07]'
-                          : 'hover:bg-white/[0.03]'
+                          ? 'bg-white/[0.08] border-amber-400/30 shadow-sm'
+                          : 'bg-white/[0.02] border-white/[0.08] hover:bg-white/[0.05] hover:border-white/15'
                       }`}
                     >
-                      <div className="flex items-start justify-between gap-4 mb-2">
+                      <div className="flex items-start justify-between gap-3 sm:gap-4 mb-2">
                         <div>
                           <div className="flex items-center gap-2 text-xs text-white/55 tabular-nums mb-1 font-light">
                             <span className={isSelected ? 'text-amber-400 font-medium' : 'text-white/45'}>
@@ -603,7 +603,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
                             <span>{location.country}</span>
                           </div>
                           <h4
-                            className={`text-lg font-normal tracking-tight transition-colors ${
+                            className={`text-base sm:text-lg font-normal tracking-tight transition-colors ${
                               isSelected ? 'text-amber-300' : 'text-white group-hover:text-white/90'
                             }`}
                           >
@@ -612,7 +612,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
                         </div>
 
                         <div className="text-right tabular-nums shrink-0">
-                          <span className="text-lg font-normal text-white">
+                          <span className="text-base sm:text-lg font-normal text-white">
                             ${location.priceFrom}
                           </span>
                           <span className="text-xs text-white/50">/nt</span>
@@ -623,8 +623,8 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
                         {location.description}
                       </p>
 
-                      <div className="flex items-center justify-between text-[11px] text-white/55 tabular-nums font-light">
-                        <div className="flex items-center gap-2.5 flex-wrap">
+                      <div className="flex flex-wrap items-center justify-between gap-2 text-[11px] text-white/55 tabular-nums font-light">
+                        <div className="flex items-center gap-2 sm:gap-2.5 flex-wrap">
                           <span className="inline-flex items-center gap-1">
                             <Mountain className="w-3 h-3 text-amber-400/80" />
                             {location.elevation}
@@ -658,7 +658,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
             </div>
 
             {/* Bottom Acoustic Distance & Sustainability Note */}
-            <div className="mt-6 pt-5 border-t border-white/10 flex items-center justify-between gap-4 text-xs text-white/55 font-light tabular-nums">
+            <div className="mt-6 pt-5 border-t border-white/10 flex flex-wrap items-center justify-between gap-2 text-xs text-white/55 font-light tabular-nums">
               <span>Minimum 180 m acoustic buffer between cabins</span>
               <span className="text-amber-300/90 shrink-0">Helipad & EV Ready</span>
             </div>

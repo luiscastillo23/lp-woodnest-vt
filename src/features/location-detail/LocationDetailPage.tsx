@@ -189,61 +189,61 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
     <div className="min-h-screen w-full bg-[#091518] text-white selection:bg-amber-400 selection:text-slate-950">
       {/* Sticky Top Architectural Navigation Bar */}
       <header className="sticky top-0 z-40 border-b border-white/10 bg-[#091518]/85 backdrop-blur-2xl">
-        <div className="max-w-[1380px] mx-auto px-6 md:px-10 h-20 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-4">
+        <div className="max-w-[1380px] mx-auto px-4 sm:px-6 md:px-10 h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-4">
+          <div className="flex items-center gap-3 sm:gap-4 min-w-0">
             <button
               type="button"
               onClick={handleBackNavigation}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.06] hover:bg-white/[0.12] border border-white/15 text-xs font-medium text-white transition-all cursor-pointer"
+              className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-full bg-white/[0.06] hover:bg-white/[0.12] border border-white/15 text-xs font-medium text-white transition-all whitespace-nowrap shrink-0 cursor-pointer"
             >
-              <ArrowLeft className="w-3.5 h-3.5 text-amber-400" />
+              <ArrowLeft className="w-3.5 h-3.5 text-amber-400 shrink-0" />
               <span>Back to Overview</span>
             </button>
 
-            <div className="hidden sm:flex items-center gap-2 text-xs text-white/60 font-light tabular-nums">
-              <span className="px-2.5 py-0.5 rounded-md bg-white/[0.05] border border-white/10 text-[11px] text-amber-300/90">
+            <div className="hidden xl:flex items-center gap-2 text-xs text-white/60 font-light tabular-nums min-w-0">
+              <span className="px-2.5 py-0.5 rounded-md bg-white/[0.05] border border-white/10 text-[11px] text-amber-300/90 shrink-0">
                 /location/{sanctuary.id}/detail
               </span>
               <span className="text-white/25" aria-hidden="true">·</span>
-              <span className="text-white/90 font-normal">{sanctuary.name}</span>
+              <span className="text-white/90 font-normal truncate">{sanctuary.name}</span>
             </div>
           </div>
 
           {/* Quick Section Anchors */}
           <nav
             aria-label="Sanctuary detail sections"
-            className="hidden lg:flex items-center gap-6 text-xs text-white/70 font-light"
+            className="hidden lg:flex items-center gap-5 xl:gap-6 text-xs text-white/70 font-light shrink-0"
           >
-            <a href="#detail-gallery" className="hover:text-white transition-colors">
+            <a href="#detail-gallery" className="hover:text-white transition-colors whitespace-nowrap">
               Residence Gallery
             </a>
-            <a href="#detail-description" className="hover:text-white transition-colors">
+            <a href="#detail-description" className="hover:text-white transition-colors whitespace-nowrap">
               Architecture & Specs
             </a>
-            <a href="#detail-activities" className="hover:text-white transition-colors">
+            <a href="#detail-activities" className="hover:text-white transition-colors whitespace-nowrap">
               Nearby Activities ({selectedActivities.length} in Plan)
             </a>
-            <a href="#detail-map" className="hover:text-white transition-colors">
+            <a href="#detail-map" className="hover:text-white transition-colors whitespace-nowrap">
               Google Maps Territory
             </a>
-            <a href="#detail-reviews" className="hover:text-white transition-colors">
+            <a href="#detail-reviews" className="hover:text-white transition-colors whitespace-nowrap">
               Guest Reviews ({allReviews.length})
             </a>
           </nav>
 
           {/* Live Plan Total Pill */}
-          <div className="flex items-center gap-3">
-            <div className="text-right tabular-nums hidden md:block">
+          <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
+            <div className="text-right tabular-nums hidden sm:block">
               <span className="block text-[10px] text-white/50 font-light">
                 Total Plan ({nights} nt + {selectedActivities.length} rituals)
               </span>
-              <span className="text-base font-medium text-amber-300">
+              <span className="text-sm sm:text-base font-medium text-amber-300">
                 ${totalPlanPrice.toLocaleString()}
               </span>
             </div>
             <a
               href="#plan-summary-card"
-              className="px-4 py-2 rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-semibold transition-colors whitespace-nowrap"
+              className="px-3.5 sm:px-4 py-2 rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-semibold transition-colors whitespace-nowrap shrink-0"
             >
               Review Plan
             </a>
@@ -252,7 +252,7 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
       </header>
 
       {/* Main Content Container */}
-      <main className="relative py-12 md:py-16 px-6 md:px-10 overflow-hidden">
+      <main className="relative py-8 sm:py-12 md:py-16 px-4 sm:px-6 md:px-10 overflow-hidden">
         {/* Hero-Matched Screen-Blended Hearth Ambient Field */}
         <div
           className="pointer-events-none absolute inset-0 opacity-75"
@@ -263,13 +263,13 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
           }}
         />
 
-        <div className="relative max-w-[1380px] mx-auto z-10 space-y-20">
+        <div className="relative max-w-[1380px] mx-auto z-10 space-y-14 sm:space-y-20">
           {/* 1. Sanctuary Header & Switcher Strip */}
-          <section id="detail-gallery" className="space-y-8">
-            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
-              <div className="space-y-3">
-                <div className="flex flex-wrap items-center gap-2.5 text-xs text-amber-300/95 tabular-nums font-light">
-                  <MapPin className="w-3.5 h-3.5 text-amber-400" />
+          <section id="detail-gallery" className="space-y-6 sm:space-y-8">
+            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-5 sm:gap-6">
+              <div className="space-y-2.5 sm:space-y-3">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 text-xs text-amber-300/95 tabular-nums font-light">
+                  <MapPin className="w-3.5 h-3.5 text-amber-400 shrink-0" />
                   <span>{sanctuary.country}</span>
                   <span className="text-white/35" aria-hidden="true">·</span>
                   <span>{sanctuary.coordinates}</span>
@@ -277,18 +277,18 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
                   <span>{sanctuary.elevation} ASL</span>
                 </div>
 
-                <h1 className="text-4xl sm:text-5xl md:text-6xl font-light tracking-[-0.03em] leading-[1.03] text-white text-balance">
+                <h1 className="text-3xl sm:text-5xl md:text-6xl font-light tracking-[-0.03em] leading-[1.05] text-white text-balance">
                   {sanctuary.name}
                 </h1>
               </div>
 
               {/* Rating & Nightly Rate Summary */}
-              <div className="flex flex-wrap items-center gap-6 pb-1 tabular-nums">
+              <div className="w-full sm:w-auto flex flex-wrap items-center justify-between sm:justify-start gap-4 sm:gap-6 pb-1 tabular-nums">
                 <a
                   href="#detail-reviews"
-                  className="flex items-center gap-2.5 px-4 py-2.5 rounded-2xl bg-white/[0.05] border border-white/15 hover:bg-white/[0.09] transition-colors"
+                  className="flex items-center gap-2.5 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-2xl bg-white/[0.05] border border-white/15 hover:bg-white/[0.09] transition-colors"
                 >
-                  <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
+                  <Star className="w-4 h-4 fill-amber-400 text-amber-400 shrink-0" />
                   <div>
                     <span className="text-sm font-medium text-white">
                       {sanctuary.ratingSummary.overall.toFixed(2)}
@@ -315,7 +315,7 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
               {/* Principal Image Stage + Bottom Property Photo Gallery (8 Columns) */}
               <div className="lg:col-span-8 flex flex-col justify-between gap-4">
-                <div className="relative h-[420px] sm:h-[520px] lg:flex-1 w-full rounded-3xl overflow-hidden border border-white/15 bg-[#12262b] group">
+                <div className="relative h-[360px] sm:h-[500px] lg:flex-1 w-full rounded-3xl overflow-hidden border border-white/15 bg-[#12262b] group">
                   <AnimatePresence mode="wait">
                     <motion.img
                       key={`${activePhoto.id}-${selectedPropertyImageIndex}`}
@@ -335,7 +335,7 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
                   </AnimatePresence>
 
                   {/* Hero-Matched Boreal Twilight Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-[#091518]/50 via-transparent to-[#091518]/92" />
+                  <div className="absolute inset-0 bg-gradient-to-b from-[#091518]/55 via-transparent to-[#091518]/95" />
 
                   {/* Hero-Matched Hearth Firelight Screen Glow */}
                   <div
@@ -347,28 +347,28 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
                   />
 
                   {/* Top Photo Metadata Bar */}
-                  <div className="absolute top-5 left-6 right-6 flex items-center justify-between gap-3 z-10">
-                    <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#091518]/80 border border-white/15 backdrop-blur-md text-xs text-white/90 tabular-nums">
-                      <span className="text-amber-400 font-medium">
+                  <div className="absolute top-3.5 sm:top-5 left-3.5 sm:left-6 right-3.5 sm:right-6 flex flex-wrap items-center justify-between gap-2 z-10">
+                    <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-[#091518]/80 border border-white/15 backdrop-blur-md text-[11px] sm:text-xs text-white/90 tabular-nums min-w-0 max-w-full">
+                      <span className="text-amber-400 font-medium shrink-0">
                         {String(activeImageIndex + 1).padStart(2, '0')} /{' '}
                         {String(sanctuary.gallery.length).padStart(2, '0')}
                       </span>
-                      <span className="text-white/30" aria-hidden="true">·</span>
-                      <span>{activePhoto.roomTag}</span>
+                      <span className="text-white/30 shrink-0" aria-hidden="true">·</span>
+                      <span className="truncate">{activePhoto.roomTag}</span>
                     </div>
 
                     <button
                       type="button"
                       onClick={() => setIsLightboxOpen(true)}
-                      className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#091518]/80 hover:bg-[#091518] border border-white/15 backdrop-blur-md text-xs text-white/85 hover:text-white transition-colors cursor-pointer"
+                      className="inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-full bg-[#091518]/80 hover:bg-[#091518] border border-white/15 backdrop-blur-md text-[11px] sm:text-xs text-white/85 hover:text-white transition-colors whitespace-nowrap shrink-0 cursor-pointer"
                     >
-                      <Maximize2 className="w-3.5 h-3.5 text-amber-400" />
+                      <Maximize2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
                       <span>Inspect Fullscreen</span>
                     </button>
                   </div>
 
                   {/* Prev / Next Image Controls */}
-                  <div className="absolute inset-y-0 left-4 right-4 flex items-center justify-between pointer-events-none z-10">
+                  <div className="absolute inset-y-0 left-3 sm:left-4 right-3 sm:right-4 flex items-center justify-between pointer-events-none z-10">
                     <button
                       type="button"
                       aria-label="Previous house photo"
@@ -377,7 +377,7 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
                           prev === 0 ? sanctuary.gallery.length - 1 : prev - 1
                         )
                       }
-                      className="pointer-events-auto w-10 h-10 rounded-full bg-[#091518]/75 hover:bg-amber-400 text-white hover:text-slate-950 border border-white/15 backdrop-blur-md flex items-center justify-center transition-colors cursor-pointer"
+                      className="pointer-events-auto w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#091518]/75 hover:bg-amber-400 text-white hover:text-slate-950 border border-white/15 backdrop-blur-md flex items-center justify-center transition-colors cursor-pointer"
                     >
                       <ChevronLeft className="w-4 h-4" />
                     </button>
@@ -389,22 +389,22 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
                           prev === sanctuary.gallery.length - 1 ? 0 : prev + 1
                         )
                       }
-                      className="pointer-events-auto w-10 h-10 rounded-full bg-[#091518]/75 hover:bg-amber-400 text-white hover:text-slate-950 border border-white/15 backdrop-blur-md flex items-center justify-center transition-colors cursor-pointer"
+                      className="pointer-events-auto w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#091518]/75 hover:bg-amber-400 text-white hover:text-slate-950 border border-white/15 backdrop-blur-md flex items-center justify-center transition-colors cursor-pointer"
                     >
                       <ChevronRight className="w-4 h-4" />
                     </button>
                   </div>
 
                   {/* Bottom Photo Caption & Architectural Spec */}
-                  <div className="absolute bottom-6 left-6 right-6 flex flex-col sm:flex-row sm:items-end justify-between gap-4 z-10">
+                  <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6 flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4 z-10">
                     <div className="space-y-1 max-w-xl">
-                      <span className="text-xs text-amber-300/95 font-light tabular-nums">
+                      <span className="text-[11px] sm:text-xs text-amber-300/95 font-light tabular-nums block">
                         {activePhoto.dimensions}
                       </span>
-                      <h2 className="text-2xl sm:text-3xl font-light tracking-tight text-white">
+                      <h2 className="text-xl sm:text-3xl font-light tracking-tight text-white">
                         {activePhoto.title}
                       </h2>
-                      <p className="text-xs sm:text-sm text-white/75 font-light">
+                      <p className="text-xs sm:text-sm text-white/75 font-light line-clamp-2 sm:line-clamp-none">
                         {activePhoto.caption}
                       </p>
                     </div>
@@ -412,7 +412,7 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
                 </div>
 
                 {/* Selected Inmueble Image Gallery (5–12 Images of the Active Inmueble) */}
-                <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-6 gap-3">
+                <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-6 gap-2.5 sm:gap-3">
                   {activePhoto.images.map((imageUrl, imageIndex) => {
                     const isCurrentImage = imageIndex === selectedPropertyImageIndex;
                     return (
@@ -422,7 +422,7 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
                         onClick={() => setSelectedPropertyImageIndex(imageIndex)}
                         aria-label={`${activePhoto.title} photo ${imageIndex + 1} of ${activePhoto.images.length}`}
                         aria-pressed={isCurrentImage}
-                        className={`group relative h-20 sm:h-24 w-full rounded-2xl overflow-hidden border transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 ${
+                        className={`group relative h-16 sm:h-24 w-full rounded-2xl overflow-hidden border transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 ${
                           isCurrentImage
                             ? 'border-amber-400 ring-1 ring-amber-400/50 shadow-md'
                             : 'border-white/15 opacity-75 hover:opacity-100 hover:border-white/35'
@@ -455,7 +455,7 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
 
               {/* Right 4 Columns: Interactive Gallery of the Rest of the House Images */}
               <div className="lg:col-span-4 flex flex-col justify-between gap-3">
-                <div className="flex items-center justify-between px-1">
+                <div className="flex flex-wrap items-center justify-between gap-2 px-1">
                   <span className="text-xs font-medium text-white/85">
                     Complete Residence Gallery ({sanctuary.gallery.length} Spaces)
                   </span>
@@ -464,7 +464,7 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
                   </span>
                 </div>
 
-                <div className="grid grid-cols-2 lg:grid-cols-1 gap-3 flex-1">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3 flex-1">
                   {sanctuary.gallery.map((img, idx) => {
                     const isSelected = idx === activeImageIndex;
                     return (
@@ -542,9 +542,9 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
               </div>
 
               {/* Hairline Architectural Specifications Ledger */}
-              <div className="rounded-3xl border border-white/15 bg-[#0c1a1e]/60 p-6 sm:p-8 space-y-6">
-                <div className="flex items-center justify-between border-b border-white/10 pb-4">
-                  <h3 className="text-lg font-normal text-white">
+              <div className="rounded-3xl border border-white/15 bg-[#0c1a1e]/60 p-5 sm:p-8 space-y-6">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 sm:gap-4 border-b border-white/10 pb-4">
+                  <h3 className="text-base sm:text-lg font-normal text-white">
                     Residence Technical Specifications
                   </h3>
                   <span className="text-xs text-amber-300 tabular-nums font-light">
@@ -619,18 +619,18 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
 
             {/* Right 5 Columns: Sticky Sanctuary Plan & Total Price Calculator */}
             <div id="plan-summary-card" className="lg:col-span-5 lg:sticky lg:top-28">
-              <GlassCard className="p-6 sm:p-8 border-white/15 bg-[#091518]/90 backdrop-blur-2xl space-y-6">
+              <GlassCard className="p-5 sm:p-8 border-white/15 bg-[#091518]/90 backdrop-blur-2xl space-y-6">
                 <div className="flex items-start justify-between gap-4 border-b border-white/10 pb-5">
                   <div>
                     <span className="text-xs text-amber-300 font-light block mb-1">
                       Bespoke Stay & Ritual Plan
                     </span>
-                    <h3 className="text-2xl font-light text-white">
+                    <h3 className="text-xl sm:text-2xl font-light text-white">
                       {sanctuary.name}
                     </h3>
                   </div>
-                  <div className="text-right tabular-nums">
-                    <span className="text-2xl font-normal text-white">
+                  <div className="text-right tabular-nums shrink-0">
+                    <span className="text-xl sm:text-2xl font-normal text-white">
                       ${sanctuary.priceFrom}
                     </span>
                     <span className="text-xs text-white/55 block">/night</span>
@@ -638,17 +638,17 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
                 </div>
 
                 {/* Nights & Guests Interactive Controls */}
-                <div className="grid grid-cols-2 gap-3 tabular-nums">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 tabular-nums">
                   <div className="p-3.5 rounded-2xl bg-white/[0.04] border border-white/10">
                     <label className="text-[11px] text-white/55 font-light flex items-center gap-1.5 mb-2">
-                      <Calendar className="w-3.5 h-3.5 text-amber-400" />
+                      <Calendar className="w-3.5 h-3.5 text-amber-400 shrink-0" />
                       <span>Duration (Nights)</span>
                     </label>
                     <div className="flex items-center justify-between">
                       <button
                         type="button"
                         onClick={() => setNights((n) => Math.max(1, n - 1))}
-                        className="w-7 h-7 rounded-lg bg-white/10 hover:bg-white/20 text-white text-sm font-medium cursor-pointer"
+                        className="w-8 h-8 sm:w-7 sm:h-7 rounded-lg bg-white/10 hover:bg-white/20 text-white text-sm font-medium cursor-pointer"
                       >
                         -
                       </button>
@@ -658,7 +658,7 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
                       <button
                         type="button"
                         onClick={() => setNights((n) => Math.min(14, n + 1))}
-                        className="w-7 h-7 rounded-lg bg-white/10 hover:bg-white/20 text-white text-sm font-medium cursor-pointer"
+                        className="w-8 h-8 sm:w-7 sm:h-7 rounded-lg bg-white/10 hover:bg-white/20 text-white text-sm font-medium cursor-pointer"
                       >
                         +
                       </button>
@@ -667,14 +667,14 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
 
                   <div className="p-3.5 rounded-2xl bg-white/[0.04] border border-white/10">
                     <label className="text-[11px] text-white/55 font-light flex items-center gap-1.5 mb-2">
-                      <Users className="w-3.5 h-3.5 text-amber-400" />
+                      <Users className="w-3.5 h-3.5 text-amber-400 shrink-0" />
                       <span>Guests</span>
                     </label>
                     <div className="flex items-center justify-between">
                       <button
                         type="button"
                         onClick={() => setGuests((g) => Math.max(1, g - 1))}
-                        className="w-7 h-7 rounded-lg bg-white/10 hover:bg-white/20 text-white text-sm font-medium cursor-pointer"
+                        className="w-8 h-8 sm:w-7 sm:h-7 rounded-lg bg-white/10 hover:bg-white/20 text-white text-sm font-medium cursor-pointer"
                       >
                         -
                       </button>
@@ -686,7 +686,7 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
                         onClick={() =>
                           setGuests((g) => Math.min(sanctuary.houseSpecs.maxGuests, g + 1))
                         }
-                        className="w-7 h-7 rounded-lg bg-white/10 hover:bg-white/20 text-white text-sm font-medium cursor-pointer"
+                        className="w-8 h-8 sm:w-7 sm:h-7 rounded-lg bg-white/10 hover:bg-white/20 text-white text-sm font-medium cursor-pointer"
                       >
                         +
                       </button>
@@ -696,19 +696,19 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
 
                 {/* Itemized Price Breakdown */}
                 <div className="space-y-3 pt-2 border-t border-white/10 text-xs tabular-nums">
-                  <div className="flex items-center justify-between text-white/85">
+                  <div className="flex items-center justify-between gap-2 text-white/85">
                     <span>
                       Sanctuary Residence (${sanctuary.priceFrom} × {nights}{' '}
                       {nights === 1 ? 'night' : 'nights'})
                     </span>
-                    <span className="font-medium text-white">
+                    <span className="font-medium text-white shrink-0">
                       ${accommodationSubtotal.toLocaleString()}
                     </span>
                   </div>
 
                   {/* Added Activities List */}
                   <div className="pt-2 space-y-2">
-                    <div className="flex items-center justify-between text-[11px] text-white/55">
+                    <div className="flex flex-wrap items-center justify-between gap-1 text-[11px] text-white/55">
                       <span>Curated Nearby Activities in Plan</span>
                       <a
                         href="#detail-activities"
@@ -764,7 +764,7 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
                   )}
 
                   {/* Grand Total */}
-                  <div className="pt-4 border-t border-white/15 flex items-baseline justify-between">
+                  <div className="pt-4 border-t border-white/15 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
                     <div>
                       <span className="text-sm font-medium text-white block">
                         Total Sanctuary & Activity Plan
@@ -773,7 +773,7 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
                         Includes private arrival transfer & firewood prep
                       </span>
                     </div>
-                    <span className="text-3xl font-light text-amber-300">
+                    <span className="text-2xl sm:text-3xl font-light text-amber-300 shrink-0">
                       ${totalPlanPrice.toLocaleString()}
                     </span>
                   </div>
@@ -809,9 +809,9 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
             id="detail-activities"
             className="pt-12 border-t border-white/10 space-y-8"
           >
-            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-5 sm:gap-6">
               <div className="space-y-3">
-                <h2 className="text-3xl sm:text-4xl font-light tracking-[-0.02em] text-white">
+                <h2 className="text-2xl sm:text-4xl font-light tracking-[-0.02em] text-white">
                   Nearby Experiences & Wilderness Rituals
                 </h2>
                 <p className="text-xs sm:text-sm text-white/70 font-light max-w-2xl">
@@ -820,7 +820,7 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
                 </p>
               </div>
 
-              <div className="inline-flex items-center gap-4 px-5 py-3 rounded-2xl bg-[#0c1a1e] border border-white/15 tabular-nums">
+              <div className="flex flex-wrap sm:inline-flex items-center justify-between sm:justify-start gap-3 sm:gap-4 px-4 sm:px-5 py-3 rounded-2xl bg-[#0c1a1e] border border-white/15 tabular-nums w-full sm:w-auto">
                 <div>
                   <span className="block text-[10px] text-white/50 uppercase tracking-wider">
                     Added to Plan ({selectedActivities.length})
@@ -829,8 +829,8 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
                     +${activitiesSubtotal.toLocaleString()} in experiences
                   </span>
                 </div>
-                <span className="text-white/20" aria-hidden="true">|</span>
-                <div>
+                <span className="hidden sm:inline text-white/20" aria-hidden="true">|</span>
+                <div className="text-right sm:text-left">
                   <span className="block text-[10px] text-white/50 uppercase tracking-wider">
                     New Total ({nights} Nights)
                   </span>
@@ -855,20 +855,20 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
                   >
                     <div>
                       {/* Activity Atmospheric Photo Header */}
-                      <div className="relative h-56 w-full overflow-hidden bg-[#12262b]">
+                      <div className="relative min-h-[224px] sm:h-56 w-full overflow-hidden bg-[#12262b] p-4 sm:p-5 flex flex-col justify-between gap-6">
                         <img
                           src={activity.imageUrl}
                           alt={activity.title}
                           referrerPolicy="no-referrer"
                           loading="lazy"
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                           style={{
                             filter: 'saturate(0.82) contrast(1.05) brightness(0.82)',
                           }}
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#091518] via-[#091518]/35 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#091518] via-[#091518]/40 to-transparent" />
 
-                        <div className="absolute top-4 left-4 right-4 flex items-center justify-between gap-2">
+                        <div className="relative z-10 flex flex-wrap items-center justify-between gap-2">
                           <span className="px-3 py-1 rounded-full bg-[#091518]/85 border border-white/15 backdrop-blur-md text-[11px] text-amber-300 font-medium">
                             {activity.category}
                           </span>
@@ -881,10 +881,10 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
                           </div>
                         </div>
 
-                        <div className="absolute bottom-4 left-5 right-5">
-                          <div className="flex items-center gap-3 text-[11px] text-white/75 tabular-nums mb-1 font-light">
+                        <div className="relative z-10">
+                          <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 text-[11px] text-white/75 tabular-nums mb-1 font-light">
                             <span className="inline-flex items-center gap-1">
-                              <Clock className="w-3 h-3 text-amber-400" />
+                              <Clock className="w-3 h-3 text-amber-400 shrink-0" />
                               {activity.duration}
                             </span>
                             <span className="text-white/35" aria-hidden="true">·</span>
@@ -892,14 +892,14 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
                             <span className="text-white/35" aria-hidden="true">·</span>
                             <span>{activity.difficulty}</span>
                           </div>
-                          <h3 className="text-xl font-normal text-white tracking-tight">
+                          <h3 className="text-lg sm:text-xl font-normal text-white tracking-tight">
                             {activity.title}
                           </h3>
                         </div>
                       </div>
 
                       {/* Activity Description & Gear */}
-                      <div className="p-6 space-y-4">
+                      <div className="p-5 sm:p-6 space-y-4">
                         <p className="text-xs sm:text-sm text-white/75 font-light leading-relaxed">
                           {activity.description}
                         </p>
@@ -911,8 +911,8 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
                     </div>
 
                     {/* Add / Remove from Plan Footer */}
-                    <div className="px-6 pb-6 pt-2 flex items-center justify-between gap-4">
-                      <div className="tabular-nums">
+                    <div className="px-5 sm:px-6 pb-5 sm:pb-6 pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
+                      <div className="tabular-nums flex sm:block items-baseline justify-between">
                         <span className="block text-[10px] text-white/50">
                           Plan Contribution
                         </span>
@@ -924,7 +924,7 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
                       <button
                         type="button"
                         onClick={() => toggleActivity(activity.id)}
-                        className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+                        className={`w-full sm:w-auto justify-center inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
                           isAdded
                             ? 'bg-amber-400 text-slate-950 shadow-sm'
                             : 'bg-white/10 hover:bg-white/20 text-white border border-white/15'
@@ -932,12 +932,12 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
                       >
                         {isAdded ? (
                           <>
-                            <Check className="w-3.5 h-3.5" />
+                            <Check className="w-3.5 h-3.5 shrink-0" />
                             <span>Added to Plan (+${activity.price})</span>
                           </>
                         ) : (
                           <>
-                            <Plus className="w-3.5 h-3.5 text-amber-400" />
+                            <Plus className="w-3.5 h-3.5 text-amber-400 shrink-0" />
                             <span>Add to Plan (+${activity.price})</span>
                           </>
                         )}
@@ -959,9 +959,9 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
             id="detail-reviews"
             className="pt-12 border-t border-white/10 space-y-10"
           >
-            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-5 sm:gap-6">
               <div className="space-y-3">
-                <h2 className="text-3xl sm:text-4xl font-light tracking-[-0.02em] text-white">
+                <h2 className="text-2xl sm:text-4xl font-light tracking-[-0.02em] text-white">
                   Guest Evaluations & Verified Journals
                 </h2>
                 <p className="text-xs sm:text-sm text-white/70 font-light max-w-xl">
@@ -973,17 +973,17 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
               <button
                 type="button"
                 onClick={() => setShowReviewForm((prev) => !prev)}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/[0.08] hover:bg-white/[0.14] border border-white/15 text-xs font-medium text-white transition-colors self-start lg:self-end cursor-pointer"
+                className="w-full sm:w-auto justify-center inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/[0.08] hover:bg-white/[0.14] border border-white/15 text-xs font-medium text-white transition-colors self-start lg:self-end cursor-pointer"
               >
-                <MessageSquarePlus className="w-3.5 h-3.5 text-amber-400" />
+                <MessageSquarePlus className="w-3.5 h-3.5 text-amber-400 shrink-0" />
                 <span>{showReviewForm ? 'Close Review Form' : 'Share Your Stay Experience'}</span>
               </button>
             </div>
 
             {/* Rating Breakdown Bar */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 p-6 sm:p-8 rounded-3xl border border-white/15 bg-[#0c1a1e]/70 tabular-nums items-center">
-              <div className="lg:col-span-4 flex items-center gap-5 border-b lg:border-b-0 lg:border-r border-white/10 pb-6 lg:pb-0 lg:pr-6">
-                <div className="text-5xl sm:text-6xl font-light text-white tracking-tight">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 p-5 sm:p-8 rounded-3xl border border-white/15 bg-[#0c1a1e]/70 tabular-nums items-center">
+              <div className="lg:col-span-4 flex flex-wrap sm:flex-nowrap items-center gap-4 sm:gap-5 border-b lg:border-b-0 lg:border-r border-white/10 pb-5 sm:pb-6 lg:pb-0 lg:pr-6">
+                <div className="text-4xl sm:text-6xl font-light text-white tracking-tight">
                   {sanctuary.ratingSummary.overall.toFixed(2)}
                 </div>
                 <div className="space-y-1">
@@ -1004,7 +1004,7 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
                 </div>
               </div>
 
-              <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-6">
+              <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
                 {[
                   {
                     label: 'Architectural Craft',
@@ -1045,10 +1045,10 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
             {showReviewForm && (
               <form
                 onSubmit={handleAddReview}
-                className="p-6 sm:p-8 rounded-3xl border border-amber-400/35 bg-[#0c1a1e]/90 space-y-5"
+                className="p-5 sm:p-8 rounded-3xl border border-amber-400/35 bg-[#0c1a1e]/90 space-y-5"
               >
-                <div className="flex items-center justify-between">
-                  <h3 className="text-lg font-normal text-white">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <h3 className="text-base sm:text-lg font-normal text-white">
                     Log a Guest Entry for {sanctuary.name}
                   </h3>
                   <div className="flex items-center gap-1">
@@ -1071,7 +1071,7 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 sm:gap-4">
                   <input
                     type="text"
                     required
@@ -1105,15 +1105,15 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
                   className="w-full px-4 py-3 rounded-xl bg-[#091518] border border-white/15 text-xs text-white placeholder:text-white/40 focus:outline-none focus:border-amber-400"
                 />
 
-                <div className="flex justify-end gap-3">
+                <div className="flex flex-col-reverse sm:flex-row justify-end gap-2.5 sm:gap-3">
                   <button
                     type="button"
                     onClick={() => setShowReviewForm(false)}
-                    className="px-4 py-2 rounded-full text-xs text-white/65 hover:text-white cursor-pointer"
+                    className="w-full sm:w-auto px-4 py-2 rounded-full text-xs text-white/65 hover:text-white cursor-pointer"
                   >
                     Cancel
                   </button>
-                  <Button variant="solid" type="submit" className="text-xs font-semibold">
+                  <Button variant="solid" type="submit" className="w-full sm:w-auto justify-center text-xs font-semibold">
                     Publish Guest Review
                   </Button>
                 </div>
@@ -1125,10 +1125,10 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
               {allReviews.map((rev) => (
                 <div
                   key={rev.id}
-                  className="p-6 sm:p-7 rounded-3xl border border-white/15 bg-[#091518]/80 flex flex-col justify-between gap-6"
+                  className="p-5 sm:p-7 rounded-3xl border border-white/15 bg-[#091518]/80 flex flex-col justify-between gap-6"
                 >
                   <div className="space-y-4">
-                    <div className="flex items-center justify-between gap-2 tabular-nums">
+                    <div className="flex flex-wrap items-center justify-between gap-2 tabular-nums">
                       <div className="flex items-center gap-1 text-amber-400">
                         {Array.from({ length: 5 }).map((_, i) => (
                           <Star
@@ -1168,7 +1168,7 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
                       </div>
                     )}
 
-                    <div className="flex items-center justify-between text-xs">
+                    <div className="flex flex-wrap items-center justify-between gap-2 text-xs">
                       <div>
                         <span className="font-medium text-white block">
                           {rev.guestName}
@@ -1177,7 +1177,7 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
                           {rev.guestOrigin}
                         </span>
                       </div>
-                      <span className="text-[11px] text-emerald-300/90 inline-flex items-center gap-1 font-light">
+                      <span className="text-[11px] text-emerald-300/90 inline-flex items-center gap-1 font-light shrink-0">
                         <ShieldCheck className="w-3.5 h-3.5" />
                         Verified Stay
                       </span>
@@ -1190,14 +1190,14 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
 
           {/* Other Woodnest Sanctuaries Switcher Footer Band */}
           <section className="pt-12 border-t border-white/10 space-y-6">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
               <h3 className="text-xl font-light text-white">
                 Explore Other Woodnest Reserves
               </h3>
               <button
                 type="button"
                 onClick={handleBackNavigation}
-                className="text-xs text-amber-300 hover:underline cursor-pointer"
+                className="self-start sm:self-auto text-xs text-amber-300 hover:underline cursor-pointer"
               >
                 Return to Main Landing Page →
               </button>
@@ -1214,19 +1214,19 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
                       e.preventDefault();
                       handleSwitchLocation(item.id);
                     }}
-                    className={`p-4 rounded-2xl border text-left transition-all cursor-pointer block ${
+                    className={`p-4 rounded-2xl border text-left transition-all cursor-pointer block min-w-0 ${
                       isCurrent
                         ? 'bg-amber-400/15 border-amber-400/60'
                         : 'bg-[#0c1a1e]/60 border-white/10 hover:border-white/25'
                     }`}
                   >
-                    <span className="text-[10px] text-white/50 uppercase tracking-wider block mb-1">
+                    <span className="text-[10px] text-white/50 uppercase tracking-wider block mb-1 truncate">
                       {item.country}
                     </span>
-                    <span className="text-sm font-medium text-white block mb-1">
+                    <span className="text-sm font-medium text-white block mb-1 truncate">
                       {item.name}
                     </span>
-                    <span className="text-xs text-amber-300 tabular-nums">
+                    <span className="text-xs text-amber-300 tabular-nums block truncate">
                       ${item.priceFrom}/night · /location/{item.id}/detail
                     </span>
                   </Link>
@@ -1244,10 +1244,10 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-[#091518]/95 backdrop-blur-2xl flex flex-col justify-between p-6 md:p-10"
+            className="fixed inset-0 z-50 bg-[#091518]/95 backdrop-blur-2xl flex flex-col justify-between p-4 sm:p-6 md:p-10"
           >
-            <div className="flex items-center justify-between">
-              <div className="text-xs text-white/80 tabular-nums">
+            <div className="flex items-center justify-between gap-3">
+              <div className="text-xs text-white/80 tabular-nums min-w-0 truncate">
                 <span className="text-amber-400 font-medium">
                   0{activeImageIndex + 1} / 0{sanctuary.gallery.length}
                 </span>
@@ -1257,13 +1257,13 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
               <button
                 type="button"
                 onClick={() => setIsLightboxOpen(false)}
-                className="p-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white cursor-pointer"
+                className="p-2 sm:p-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white shrink-0 cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            <div className="relative flex-1 my-6 flex items-center justify-center overflow-hidden">
+            <div className="relative flex-1 my-4 sm:my-6 flex items-center justify-center overflow-hidden">
               <img
                 src={activePhoto.url}
                 alt={activePhoto.title}
@@ -1272,17 +1272,17 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
               />
             </div>
 
-            <div className="flex items-center justify-between gap-4">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 sm:gap-4">
               <p className="text-xs sm:text-sm text-white/75 font-light">
                 {activePhoto.caption}
               </p>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 overflow-x-auto max-w-full pb-1 shrink-0">
                 {sanctuary.gallery.map((g, idx) => (
                   <button
                     key={g.id}
                     type="button"
                     onClick={() => setActiveImageIndex(idx)}
-                    className={`w-12 h-8 rounded-lg overflow-hidden border transition-all cursor-pointer ${
+                    className={`w-12 h-8 rounded-lg overflow-hidden border transition-all shrink-0 cursor-pointer ${
                       idx === activeImageIndex
                         ? 'border-amber-400 scale-105'
                         : 'border-white/20 opacity-50 hover:opacity-100'

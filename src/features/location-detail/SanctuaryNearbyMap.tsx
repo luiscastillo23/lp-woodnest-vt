@@ -260,10 +260,10 @@ export const SanctuaryNearbyMap: React.FC<SanctuaryNearbyMapProps> = ({ sanctuar
   return (
     <div className="rounded-3xl border border-white/15 bg-[#091518]/80 backdrop-blur-2xl overflow-hidden">
       {/* Top Map Header & Live Category Filter Bar */}
-      <div className="p-6 sm:p-8 border-b border-white/10 flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+      <div className="p-5 sm:p-6 md:p-8 border-b border-white/10 flex flex-col lg:flex-row lg:items-end justify-between gap-5 sm:gap-6">
         <div className="space-y-2">
-          <div className="flex items-center gap-2 text-xs text-amber-300/90 tabular-nums font-light">
-            <Compass className="w-3.5 h-3.5 text-amber-400" />
+          <div className="flex flex-wrap items-center gap-2 text-xs text-amber-300/90 tabular-nums font-light">
+            <Compass className="w-3.5 h-3.5 text-amber-400 shrink-0" />
             <span>{sanctuary.coordinates}</span>
             <span className="text-white/30" aria-hidden="true">·</span>
             <span>{sanctuary.elevation} ASL</span>
@@ -281,7 +281,7 @@ export const SanctuaryNearbyMap: React.FC<SanctuaryNearbyMapProps> = ({ sanctuar
         <div
           role="tablist"
           aria-label="Filter nearby places on Google Maps"
-          className="flex flex-wrap items-center gap-1.5 p-1.5 rounded-2xl bg-[#0c1a1e] border border-white/10"
+          className="grid grid-cols-1 sm:flex sm:flex-wrap items-center gap-1.5 p-1.5 rounded-2xl bg-[#0c1a1e] border border-white/10 w-full lg:w-auto"
         >
           {NEARBY_CATEGORIES.map((cat) => {
             const Icon = cat.icon;
@@ -293,7 +293,7 @@ export const SanctuaryNearbyMap: React.FC<SanctuaryNearbyMapProps> = ({ sanctuar
                 role="tab"
                 aria-selected={isSelected}
                 onClick={() => setActiveCategoryKey(cat.key)}
-                className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-medium transition-all cursor-pointer ${
+                className={`inline-flex items-center justify-center sm:justify-start gap-2 px-3.5 py-2 rounded-xl text-xs font-medium transition-all whitespace-nowrap cursor-pointer ${
                   isSelected
                     ? 'bg-amber-400 text-slate-950 shadow-sm'
                     : 'text-white/70 hover:text-white hover:bg-white/5'
@@ -314,7 +314,7 @@ export const SanctuaryNearbyMap: React.FC<SanctuaryNearbyMapProps> = ({ sanctuar
       >
         <div className="grid grid-cols-1 lg:grid-cols-12">
           {/* Interactive Google Map Canvas (8 Columns) — Explicit Height per CF2 */}
-          <div className="lg:col-span-8 relative h-[440px] sm:h-[500px] w-full bg-[#0c1a1e]">
+          <div className="lg:col-span-8 relative h-[360px] sm:h-[460px] lg:h-[500px] w-full bg-[#0c1a1e]">
             <Map
               defaultCenter={sanctuary.center}
               defaultZoom={11}
@@ -458,15 +458,15 @@ export const SanctuaryNearbyMap: React.FC<SanctuaryNearbyMapProps> = ({ sanctuar
             </Map>
 
             {/* Floating Telemetry Pill on Map */}
-            <div className="pointer-events-none absolute bottom-4 left-4 z-10 inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-[#091518]/90 border border-white/15 backdrop-blur-md text-xs text-white/85 tabular-nums">
-              <Navigation className="w-3.5 h-3.5 text-amber-400" />
-              <span>{sanctuary.nearestTown}</span>
+            <div className="pointer-events-none absolute bottom-3 sm:bottom-4 left-3 sm:left-4 max-w-[calc(100%-24px)] z-10 inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-[#091518]/90 border border-white/15 backdrop-blur-md text-xs text-white/85 tabular-nums">
+              <Navigation className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+              <span className="truncate">{sanctuary.nearestTown}</span>
             </div>
           </div>
 
           {/* Right 4 Columns: Live Places Directory from Google Maps API */}
-          <div className="lg:col-span-4 border-t lg:border-t-0 lg:border-l border-white/10 bg-[#091518]/90 flex flex-col justify-between h-[440px] sm:h-[500px]">
-            <div className="p-5 border-b border-white/10 flex items-center justify-between">
+          <div className="lg:col-span-4 border-t lg:border-t-0 lg:border-l border-white/10 bg-[#091518]/90 flex flex-col justify-between h-[420px] sm:h-[460px] lg:h-[500px]">
+            <div className="p-4 sm:p-5 border-b border-white/10 flex items-center justify-between gap-2">
               <div>
                 <h4 className="text-sm font-medium text-white">
                   Nearby {activeCategory.label}
@@ -480,7 +480,7 @@ export const SanctuaryNearbyMap: React.FC<SanctuaryNearbyMapProps> = ({ sanctuar
               )}
             </div>
 
-            <div className="flex-1 overflow-y-auto divide-y divide-white/10 px-5">
+            <div className="flex-1 overflow-y-auto px-4 sm:px-5 py-3 flex flex-col gap-2.5">
               {errorMsg ? (
                 <div className="py-10 text-center space-y-2">
                   <AlertCircle className="w-5 h-5 text-amber-400 mx-auto" />
@@ -516,8 +516,10 @@ export const SanctuaryNearbyMap: React.FC<SanctuaryNearbyMapProps> = ({ sanctuar
                         setShowSanctuaryInfo(false);
                         setSelectedPlace(place);
                       }}
-                      className={`w-full text-left py-3.5 px-3 -mx-3 rounded-xl transition-colors cursor-pointer ${
-                        isSelected ? 'bg-amber-400/15' : 'hover:bg-white/[0.04]'
+                      className={`w-full text-left p-3 rounded-xl border transition-all cursor-pointer ${
+                        isSelected
+                          ? 'bg-amber-400/15 border-amber-400/40'
+                          : 'bg-white/[0.02] border-white/[0.08] hover:bg-white/[0.05] hover:border-white/15'
                       }`}
                     >
                       <div className="flex items-start justify-between gap-2 mb-1">
@@ -541,12 +543,12 @@ export const SanctuaryNearbyMap: React.FC<SanctuaryNearbyMapProps> = ({ sanctuar
                         </p>
                       )}
 
-                      <div className="flex items-center justify-between text-[11px] text-white/50 tabular-nums">
-                        <span>
+                      <div className="flex items-center justify-between gap-2 text-[11px] text-white/50 tabular-nums">
+                        <span className="truncate">
                           {place.primaryTypeDisplayName || activeCategory.label}
                         </span>
                         {place.rating && (
-                          <span className="inline-flex items-center gap-1 text-amber-300">
+                          <span className="inline-flex items-center gap-1 text-amber-300 shrink-0">
                             <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
                             {place.rating.toFixed(1)}
                             {place.userRatingCount ? (
@@ -563,9 +565,9 @@ export const SanctuaryNearbyMap: React.FC<SanctuaryNearbyMapProps> = ({ sanctuar
               )}
             </div>
 
-            <div className="p-4 border-t border-white/10 bg-[#0c1a1e]/60 flex items-center justify-between text-[11px] text-white/55">
+            <div className="p-4 border-t border-white/10 bg-[#0c1a1e]/60 flex flex-wrap items-center justify-between gap-2 text-[11px] text-white/55">
               <span>Click any marker or row to inspect</span>
-              <span className="text-amber-300/90 tabular-nums">
+              <span className="text-amber-300/90 tabular-nums shrink-0">
                 {places.length} places found
               </span>
             </div>

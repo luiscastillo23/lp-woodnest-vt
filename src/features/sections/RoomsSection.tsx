@@ -180,7 +180,7 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({
   return (
     <section
       id="rooms"
-      className="relative py-28 md:py-36 px-6 md:px-10 border-t border-white/10 bg-gradient-to-b from-[#091518] via-[#0e2227] to-[#091518] overflow-hidden"
+      className="relative py-20 sm:py-28 md:py-36 px-4 sm:px-6 md:px-10 border-t border-white/10 bg-gradient-to-b from-[#091518] via-[#0e2227] to-[#091518] overflow-hidden"
     >
       {/* Hero-Matched Screen-Blended Firelight Field */}
       <div
@@ -194,9 +194,9 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({
 
       <div className="relative max-w-[1360px] mx-auto z-10">
         {/* Section Header — Direct Display Authority without Eyebrow Kicker */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-14">
-          <div className="space-y-4">
-            <h2 className="text-4xl sm:text-5xl md:text-[56px] font-light tracking-[-0.03em] leading-[1.04] text-white max-w-2xl text-balance">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 sm:gap-8 mb-10 sm:mb-14">
+          <div className="space-y-3 sm:space-y-4">
+            <h2 className="text-3xl sm:text-5xl md:text-[56px] font-light tracking-[-0.03em] leading-[1.04] text-white max-w-2xl text-balance">
               Designed to Disappear Into the Trees
             </h2>
             <p className="text-xs md:text-sm text-white/70 max-w-xl font-light leading-relaxed text-pretty">
@@ -209,7 +209,7 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({
           <div
             role="tablist"
             aria-label="Select cabin architecture"
-            className="inline-flex items-center gap-1.5 p-1.5 rounded-full bg-[#091518]/90 border border-white/15 backdrop-blur-2xl overflow-x-auto self-start lg:self-end"
+            className="flex flex-wrap sm:inline-flex items-center gap-1.5 p-1.5 rounded-2xl sm:rounded-full bg-[#091518]/90 border border-white/15 backdrop-blur-2xl max-w-full self-start lg:self-end"
           >
             {CABIN_ROOMS.map((room) => {
               const isSelected = room.id === activeRoom.id;
@@ -220,7 +220,7 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({
                   role="tab"
                   aria-selected={isSelected}
                   onClick={() => setActiveRoomId(room.id)}
-                  className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-200 whitespace-nowrap shrink-0 cursor-pointer flex items-center gap-2 tabular-nums ${
+                  className={`px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl sm:rounded-full text-xs font-medium transition-all duration-200 whitespace-nowrap shrink-0 cursor-pointer flex items-center gap-2 tabular-nums ${
                     isSelected
                       ? 'bg-amber-400 text-slate-950 shadow-sm'
                       : 'text-white/75 hover:text-white hover:bg-white/5'
@@ -237,10 +237,10 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({
         </div>
 
         {/* Featured Asymmetric 12-Column Cabin Monograph */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch mb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-10 items-stretch mb-10 sm:mb-12">
           {/* Left 7 Columns: Dual-Mode Twilight & 1:100 CAD Blueprint Canvas */}
           <div className="lg:col-span-7 flex">
-            <div className="relative w-full min-h-[420px] sm:min-h-[500px] rounded-3xl overflow-hidden border border-white/15 bg-[#0c1d22] flex flex-col justify-between p-6 sm:p-8">
+            <div className="relative w-full min-h-[380px] sm:min-h-[500px] rounded-3xl overflow-hidden border border-white/15 bg-[#0c1d22] flex flex-col justify-between p-4 sm:p-8">
               {/* Mode 1: Twilight Exterior & Hearth Glow matching Hero FrameContainer */}
               <div
                 className={`absolute inset-0 transition-opacity duration-500 ${
@@ -433,9 +433,9 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({
               </svg>
 
               {/* Top Overlay Controls: Scale & Mode Switcher */}
-              <div className="relative z-10 flex flex-wrap items-center justify-between gap-3">
-                <div className="flex items-center gap-2 text-xs text-white/85 tabular-nums font-light">
-                  <Compass className="w-3.5 h-3.5 text-amber-400" />
+              <div className="relative z-10 flex flex-wrap items-center justify-between gap-2.5">
+                <div className="flex flex-wrap items-center gap-2 text-xs text-white/85 tabular-nums font-light">
+                  <Compass className="w-3.5 h-3.5 text-amber-400 shrink-0" />
                   <span>Scale 1:100</span>
                   <span className="text-white/35" aria-hidden="true">·</span>
                   <span>{activeRoom.dimensionsMetric}</span>
@@ -471,10 +471,10 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({
               </div>
 
               {/* Bottom Overlay Architectural Specs */}
-              <div className="relative z-10 pt-6 border-t border-white/15 flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+              <div className="relative z-10 pt-5 sm:pt-6 border-t border-white/15 flex flex-col sm:flex-row sm:items-end justify-between gap-4 sm:gap-6">
                 <div>
-                  <div className="flex items-center gap-2 text-xs text-amber-300/95 mb-1 tabular-nums">
-                    <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                  <div className="flex flex-wrap items-center gap-2 text-xs text-amber-300/95 mb-1 tabular-nums">
+                    <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400 shrink-0" />
                     <span className="font-medium text-white">{activeRoom.rating}</span>
                     <span className="text-white/60">({activeRoom.reviewsCount} stays)</span>
                     <span className="text-white/35" aria-hidden="true">·</span>
@@ -488,20 +488,20 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({
                       exit={{ opacity: 0, y: -4 }}
                       transition={{ duration: 0.2, ease: 'easeOut' }}
                     >
-                      <h3 className="text-3xl sm:text-4xl font-light tracking-[-0.02em] text-white">
+                      <h3 className="text-2xl sm:text-4xl font-light tracking-[-0.02em] text-white">
                         {activeRoom.title} — {activeRoom.subtitle}
                       </h3>
                     </motion.div>
                   </AnimatePresence>
                 </div>
 
-                <div className="flex items-center gap-5 text-xs text-white/75 font-light tabular-nums shrink-0">
+                <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-white/75 font-light tabular-nums">
                   <span className="inline-flex items-center gap-1.5">
-                    <VolumeX className="w-3.5 h-3.5 text-amber-400" />
+                    <VolumeX className="w-3.5 h-3.5 text-amber-400 shrink-0" />
                     {activeRoom.acousticRating}
                   </span>
                   <span className="inline-flex items-center gap-1.5">
-                    <Thermometer className="w-3.5 h-3.5 text-amber-400" />
+                    <Thermometer className="w-3.5 h-3.5 text-amber-400 shrink-0" />
                     {activeRoom.thermalRating}
                   </span>
                 </div>
@@ -511,14 +511,14 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({
 
           {/* Right 5 Columns: GlassCard Architectural Spec Sheet matching Hero BookingWidget */}
           <div className="lg:col-span-5 flex">
-            <GlassCard className="w-full flex flex-col justify-between p-6 sm:p-8 backdrop-blur-2xl border-white/15 bg-[#091518]/80">
+            <GlassCard className="w-full flex flex-col justify-between p-5 sm:p-8 backdrop-blur-2xl border-white/15 bg-[#091518]/80">
               <div>
                 <div className="flex items-start justify-between gap-4 pb-5 mb-5 border-b border-white/10">
                   <div>
                     <h4 className="text-xl font-normal text-white leading-snug">
                       {activeRoom.title}
                     </h4>
-                    <p className="text-sm font-light text-white/75">
+                    <p className="text-xs sm:text-sm font-light text-white/75">
                       {activeRoom.subtitle} · {activeRoom.ceilingHeight}
                     </p>
                   </div>
@@ -555,7 +555,7 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({
                   <span className="block text-[11px] text-white/50 font-light mb-3">
                     Architectural Material Palette
                   </span>
-                  <div className="grid grid-cols-3 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3">
                     {activeRoom.materials.map((mat) => (
                       <div key={mat.name} className="flex items-start gap-2">
                         <span
@@ -564,10 +564,10 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({
                           aria-hidden="true"
                         />
                         <div className="min-w-0">
-                          <span className="block text-[11px] text-white/90 font-normal truncate">
+                          <span className="block text-[11px] text-white/90 font-normal sm:truncate">
                             {mat.name}
                           </span>
-                          <span className="block text-[10px] text-white/50 font-light truncate">
+                          <span className="block text-[10px] text-white/50 font-light sm:truncate">
                             {mat.origin}
                           </span>
                         </div>
@@ -586,7 +586,7 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({
                 <Button
                   variant={selectedCabinTitle === activeRoom.title ? 'glass' : 'solid'}
                   onClick={() => handleBookCabin(activeRoom)}
-                  className={`px-5 py-2.5 text-xs font-semibold gap-1.5 whitespace-nowrap shrink-0 cursor-pointer ${
+                  className={`w-full sm:w-auto justify-center px-5 py-2.5 text-xs font-semibold gap-1.5 whitespace-nowrap shrink-0 cursor-pointer ${
                     selectedCabinTitle === activeRoom.title
                       ? 'border-amber-400/60 text-amber-300 bg-amber-400/10'
                       : ''
@@ -620,7 +620,7 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({
                       setActiveRoomId(room.id);
                     }
                   }}
-                  className={`p-5 sm:p-6 transition-colors cursor-pointer ${
+                  className={`p-4 sm:p-6 transition-colors cursor-pointer ${
                     isSelected ? 'bg-white/[0.05]' : 'hover:bg-white/[0.02]'
                   }`}
                 >
@@ -628,7 +628,7 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({
                     <h4 className={`text-base font-normal ${isSelected ? 'text-amber-300' : 'text-white'}`}>
                       {room.title} · <span className="text-white/70 font-light">{room.subtitle}</span>
                     </h4>
-                    <span className="text-sm font-normal text-white">${room.pricePerNight}/nt</span>
+                    <span className="text-sm font-normal text-white shrink-0">${room.pricePerNight}/nt</span>
                   </div>
 
                   <div className="text-xs text-white/55 font-light tabular-nums mb-3">
@@ -639,7 +639,7 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({
                     <span>{room.saunaSpec}</span>
                   </div>
 
-                  <div className="flex items-center justify-between text-[11px]">
+                  <div className="flex flex-wrap items-center justify-between gap-2 text-[11px]">
                     <span className={isSelected ? 'text-amber-400 font-medium' : 'text-white/40'}>
                       {isSelected ? 'Inspecting floorplan & specs' : 'Click to inspect specs'}
                     </span>

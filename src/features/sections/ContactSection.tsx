@@ -98,7 +98,7 @@ export const ContactSection: React.FC = () => {
   return (
     <section
       id="contact"
-      className="relative py-28 md:py-36 px-6 md:px-10 border-t border-white/10 bg-gradient-to-b from-[#091518] via-[#0d1f23] to-[#071114] overflow-hidden"
+      className="relative py-20 sm:py-28 md:py-36 px-4 sm:px-6 md:px-10 border-t border-white/10 bg-gradient-to-b from-[#091518] via-[#0d1f23] to-[#071114] overflow-hidden"
     >
       {/* Hero-Matched Screen-Blended Hearth Ambient Field */}
       <div
@@ -111,27 +111,27 @@ export const ContactSection: React.FC = () => {
       />
 
       <div className="relative max-w-[1360px] mx-auto z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-12 lg:gap-14 items-start">
           {/* Left 5 Columns: Direct Concierge Channels & Hairline FAQ */}
           <div className="lg:col-span-5">
-            <h2 className="text-4xl sm:text-5xl md:text-[54px] font-light tracking-[-0.03em] leading-[1.04] text-white mb-5 text-balance">
+            <h2 className="text-3xl sm:text-5xl md:text-[54px] font-light tracking-[-0.03em] leading-[1.04] text-white mb-4 sm:mb-5 text-balance">
               Plan Your Retreat With Our Forest Hosts
             </h2>
-            <p className="text-xs md:text-sm text-white/70 font-light leading-relaxed mb-10 text-pretty">
+            <p className="text-xs md:text-sm text-white/70 font-light leading-relaxed mb-8 sm:mb-10 text-pretty">
               Whether arranging helicopter transfers to Val Gardena, reserving a full
               sanctuary buyout, or tailoring hearth provisions, our resident hosts respond
               within two hours.
             </p>
 
             {/* Interactive Copyable Concierge Dispatch Lines */}
-            <div className="divide-y divide-white/10 border-t border-b border-white/10 mb-12">
-              <div className="py-4 flex items-center justify-between gap-4">
-                <div>
+            <div className="divide-y divide-white/10 border-t border-b border-white/10 mb-10 sm:mb-12">
+              <div className="py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
+                <div className="min-w-0">
                   <div className="flex items-center gap-2 text-xs text-amber-400 mb-1">
-                    <Mail className="w-3.5 h-3.5" />
+                    <Mail className="w-3.5 h-3.5 shrink-0" />
                     <span>Direct Concierge Desk</span>
                   </div>
-                  <p className="text-sm sm:text-base text-white font-normal">
+                  <p className="text-sm sm:text-base text-white font-normal break-all sm:break-normal">
                     concierge@woodnest.cabins
                   </p>
                   <p className="text-[11px] text-white/50 font-light mt-0.5">
@@ -142,7 +142,7 @@ export const ContactSection: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => handleCopy('concierge@woodnest.cabins', 'email')}
-                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 text-xs text-white/80 hover:text-white transition-colors whitespace-nowrap shrink-0 cursor-pointer"
+                  className="self-start sm:self-center inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 text-xs text-white/80 hover:text-white transition-colors whitespace-nowrap shrink-0 cursor-pointer"
                 >
                   {copiedChannel === 'email' ? (
                     <>
@@ -158,10 +158,10 @@ export const ContactSection: React.FC = () => {
                 </button>
               </div>
 
-              <div className="py-4 flex items-center justify-between gap-4 tabular-nums">
-                <div>
+              <div className="py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 tabular-nums">
+                <div className="min-w-0">
                   <div className="flex items-center gap-2 text-xs text-amber-400 mb-1">
-                    <Phone className="w-3.5 h-3.5" />
+                    <Phone className="w-3.5 h-3.5 shrink-0" />
                     <span>24/7 Sanctuary Dispatch</span>
                   </div>
                   <p className="text-sm sm:text-base text-white font-normal">
@@ -175,7 +175,7 @@ export const ContactSection: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => handleCopy('+47 57 66 42 10', 'phone')}
-                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 text-xs text-white/80 hover:text-white transition-colors whitespace-nowrap shrink-0 cursor-pointer"
+                  className="self-start sm:self-center inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 text-xs text-white/80 hover:text-white transition-colors whitespace-nowrap shrink-0 cursor-pointer"
                 >
                   {copiedChannel === 'phone' ? (
                     <>
@@ -229,7 +229,7 @@ export const ContactSection: React.FC = () => {
 
           {/* Right 7 Columns: GlassCard Tailored Stay & Transfer Configurator */}
           <div className="lg:col-span-7">
-            <GlassCard className="p-6 sm:p-10 backdrop-blur-2xl border-white/15 bg-[#091518]/80">
+            <GlassCard className="p-5 sm:p-10 backdrop-blur-2xl border-white/15 bg-[#091518]/80">
               {isSubmitted ? (
                 <div className="py-12 text-center space-y-5">
                   <div className="w-12 h-12 rounded-full bg-amber-400/20 border border-amber-400/50 flex items-center justify-center mx-auto text-amber-300">
@@ -264,10 +264,10 @@ export const ContactSection: React.FC = () => {
                   </div>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+                <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6" noValidate>
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-5 border-b border-white/10">
                     <div>
-                      <h3 className="text-xl font-normal text-white">
+                      <h3 className="text-lg sm:text-xl font-normal text-white">
                         Configure a Tailored Sanctuary Stay
                       </h3>
                       <p className="text-xs text-white/60 font-light mt-0.5">
@@ -275,7 +275,7 @@ export const ContactSection: React.FC = () => {
                       </p>
                     </div>
                     <div className="flex items-center gap-1.5 text-xs text-amber-300/95 tabular-nums">
-                      <Clock className="w-3.5 h-3.5 text-amber-400" />
+                      <Clock className="w-3.5 h-3.5 text-amber-400 shrink-0" />
                       <span>Under 2h host response</span>
                     </div>
                   </div>
@@ -417,7 +417,7 @@ export const ContactSection: React.FC = () => {
                             }`}
                           >
                             <Flame
-                              className={`w-3 h-3 ${
+                              className={`w-3 h-3 shrink-0 ${
                                 isChecked ? 'text-amber-400 fill-amber-400' : 'text-white/35'
                               }`}
                             />
@@ -464,7 +464,7 @@ export const ContactSection: React.FC = () => {
                     <Button
                       type="submit"
                       variant="solid"
-                      className="py-3 px-6 text-xs font-semibold gap-2 whitespace-nowrap shrink-0 cursor-pointer"
+                      className="w-full sm:w-auto justify-center py-3 px-6 text-xs font-semibold gap-2 whitespace-nowrap shrink-0 cursor-pointer"
                     >
                       Request Retreat Dossier
                       <Send className="w-3.5 h-3.5" />

@@ -241,7 +241,7 @@ export const ExperiencesSection: React.FC = () => {
   return (
     <section
       id="experiences"
-      className="relative py-28 md:py-36 px-6 md:px-10 border-t border-white/10 bg-gradient-to-b from-[#091518] via-[#0c1d22] to-[#091518] overflow-hidden"
+      className="relative py-20 sm:py-28 md:py-36 px-4 sm:px-6 md:px-10 border-t border-white/10 bg-gradient-to-b from-[#091518] via-[#0c1d22] to-[#091518] overflow-hidden"
     >
       {/* Hero-Matched Screen-Blended Hearth Ambient Field */}
       <div
@@ -255,9 +255,9 @@ export const ExperiencesSection: React.FC = () => {
 
       <div className="relative max-w-[1360px] mx-auto z-10">
         {/* Section Heading — Direct Hero-Scale Display Typography (No Eyebrow Kicker) */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-14">
-          <div className="space-y-4">
-            <h2 className="text-4xl sm:text-5xl md:text-[56px] font-light tracking-[-0.03em] leading-[1.04] text-white max-w-2xl text-balance">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 sm:gap-8 mb-10 sm:mb-14">
+          <div className="space-y-3 sm:space-y-4">
+            <h2 className="text-3xl sm:text-5xl md:text-[56px] font-light tracking-[-0.03em] leading-[1.04] text-white max-w-2xl text-balance">
               Slow Rituals for Every Season
             </h2>
             <p className="text-xs md:text-sm text-white/75 max-w-xl font-light leading-relaxed text-pretty">
@@ -269,7 +269,7 @@ export const ExperiencesSection: React.FC = () => {
           <div
             role="tablist"
             aria-label="Filter experiences by season"
-            className="inline-flex items-center gap-1 p-1.5 rounded-full bg-[#091518]/90 border border-white/15 backdrop-blur-2xl self-start lg:self-end overflow-x-auto"
+            className="flex flex-wrap sm:inline-flex items-center gap-1 p-1.5 rounded-2xl sm:rounded-full bg-[#091518]/90 border border-white/15 backdrop-blur-2xl max-w-full self-start lg:self-end"
           >
             {SEASONS.map((season) => {
               const active = selectedSeason === season;
@@ -294,7 +294,7 @@ export const ExperiencesSection: React.FC = () => {
                       setActiveExperienceId(nextList[0].id);
                     }
                   }}
-                  className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-200 whitespace-nowrap shrink-0 cursor-pointer ${
+                  className={`px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl sm:rounded-full text-xs font-medium transition-all duration-200 whitespace-nowrap shrink-0 cursor-pointer ${
                     active
                       ? 'bg-amber-400 text-slate-950 shadow-sm'
                       : 'text-white/70 hover:text-white hover:bg-white/5'
@@ -308,7 +308,7 @@ export const ExperiencesSection: React.FC = () => {
         </div>
 
         {/* 1. FEATURED SENSORY IMMERSION STAGE (Echoes the Hero FrameContainer + GlassCard Architecture) */}
-        <div className="relative rounded-3xl overflow-hidden border border-white/15 bg-[#12262b] mb-12 shadow-2xl">
+        <div className="relative rounded-3xl overflow-hidden border border-white/15 bg-[#12262b] mb-10 sm:mb-12 shadow-2xl">
           {/* Full-Bleed Evocative Photography with Hero Twilight Grading & Fallback */}
           <AnimatePresence mode="wait">
             <motion.div
@@ -343,11 +343,11 @@ export const ExperiencesSection: React.FC = () => {
           />
 
           {/* Stage Content Grid: Left Sensory Narrative + Right Floating GlassCard (Like Hero BookingWidget) */}
-          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 p-6 sm:p-10 lg:p-12 items-end min-h-[500px] lg:min-h-[540px]">
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 p-5 sm:p-10 lg:p-12 items-end min-h-[460px] sm:min-h-[500px] lg:min-h-[540px]">
             {/* Left 7 Columns: Atmospheric Headline & Sensory Immersion Telemetry */}
-            <div className="lg:col-span-7 flex flex-col justify-between h-full space-y-8">
+            <div className="lg:col-span-7 flex flex-col justify-between h-full space-y-6 sm:space-y-8">
               {/* Top Unboxed Metadata Strip */}
-              <div className="flex flex-wrap items-center gap-3 text-xs text-white/85 tabular-nums font-light">
+              <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 text-xs text-white/85 tabular-nums font-light">
                 <span className="text-amber-400 font-medium">
                   Ritual {spotlightExperience.number} / 04
                 </span>
@@ -363,12 +363,12 @@ export const ExperiencesSection: React.FC = () => {
               </div>
 
               {/* Bottom Left Display Title & Sensory Field Notes */}
-              <div className="space-y-6">
+              <div className="space-y-5 sm:space-y-6">
                 <div>
                   <p className="text-xs sm:text-sm text-amber-300/90 font-light mb-2">
                     {spotlightExperience.subtitle}
                   </p>
-                  <h3 className="text-3xl sm:text-4xl md:text-5xl font-light tracking-[-0.03em] leading-[1.06] text-white max-w-xl text-balance">
+                  <h3 className="text-2xl sm:text-4xl md:text-5xl font-light tracking-[-0.03em] leading-[1.06] text-white max-w-xl text-balance">
                     {spotlightExperience.title}
                   </h3>
                 </div>
@@ -408,8 +408,8 @@ export const ExperiencesSection: React.FC = () => {
             </div>
 
             {/* Right 5 Columns: Hero-Style GlassCard Ritual Dossier */}
-            <div className="lg:col-span-5 flex justify-end">
-              <GlassCard className="w-full max-w-[430px] backdrop-blur-2xl bg-[#091518]/80 border-white/15 p-6 sm:p-7">
+            <div className="lg:col-span-5 flex justify-start lg:justify-end">
+              <GlassCard className="w-full max-w-full lg:max-w-[430px] backdrop-blur-2xl bg-[#091518]/80 border-white/15 p-5 sm:p-7">
                 <div className="flex items-start justify-between gap-4 pb-4 mb-4 border-b border-white/10">
                   <div>
                     <span className="block text-[11px] text-amber-400 font-normal mb-0.5">
@@ -442,7 +442,7 @@ export const ExperiencesSection: React.FC = () => {
 
                 {/* Authentic Geometric Telemetry Waveform inside GlassCard */}
                 <div className="rounded-2xl bg-white/5 border border-white/10 p-3.5 mb-5">
-                  <div className="flex items-center justify-between gap-2 text-[11px] tabular-nums mb-1.5">
+                  <div className="flex flex-wrap items-center justify-between gap-2 text-[11px] tabular-nums mb-1.5">
                     <span className="text-white/55 font-light">
                       {spotlightExperience.telemetryLabel}
                     </span>
@@ -478,7 +478,7 @@ export const ExperiencesSection: React.FC = () => {
                 {/* Schedule & Primary Action */}
                 <div className="flex items-center justify-between text-xs text-white/70 font-light mb-4 tabular-nums">
                   <span className="inline-flex items-center gap-1.5">
-                    <Calendar className="w-3.5 h-3.5 text-amber-400" />
+                    <Calendar className="w-3.5 h-3.5 text-amber-400 shrink-0" />
                     {spotlightExperience.schedule}
                   </span>
                 </div>
@@ -510,7 +510,7 @@ export const ExperiencesSection: React.FC = () => {
         </div>
 
         {/* 2. VISUAL GALLERY OF ALL SEASONAL RITUALS (Photographic Cards with Hearth Glow) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-14">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 mb-12 sm:mb-14">
           {filteredExperiences.map((exp) => {
             const isSelected = exp.id === spotlightExperience.id;
             const isAdded = itineraryIds.includes(exp.id);
@@ -615,12 +615,12 @@ export const ExperiencesSection: React.FC = () => {
                   >
                     {isAdded ? (
                       <>
-                        <Check className="w-3 h-3" />
+                        <Check className="w-3.5 h-3.5" />
                         In Stay
                       </>
                     ) : (
                       <>
-                        <Plus className="w-3 h-3" />
+                        <Plus className="w-3.5 h-3.5" />
                         Add
                       </>
                     )}
@@ -632,8 +632,8 @@ export const ExperiencesSection: React.FC = () => {
         </div>
 
         {/* 3. LIVE CURATED STAY ITINERARY BAR WITH VISUAL THUMBNAILS */}
-        <div className="rounded-3xl bg-[#091518]/85 border border-white/15 backdrop-blur-2xl p-6 sm:p-7 mb-24 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-          <div className="flex flex-col sm:flex-row sm:items-center gap-5">
+        <div className="rounded-3xl bg-[#091518]/85 border border-white/15 backdrop-blur-2xl p-5 sm:p-7 mb-16 sm:mb-24 flex flex-col lg:flex-row lg:items-center justify-between gap-5 sm:gap-6">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5">
             {/* Visual Stack of Selected Experience Photos */}
             {selectedExperiences.length > 0 && (
               <div className="flex items-center -space-x-3 shrink-0">
@@ -657,18 +657,18 @@ export const ExperiencesSection: React.FC = () => {
 
             <div className="space-y-1">
               <div className="flex items-center gap-2 text-xs text-amber-300 tabular-nums">
-                <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                <Sparkles className="w-3.5 h-3.5 text-amber-400 shrink-0" />
                 <span>
                   Your Curated Forest Itinerary · {selectedExperiences.length} ritual
                   {selectedExperiences.length === 1 ? '' : 's'} ({totalCuratedHours} hours of immersion)
                 </span>
               </div>
               {selectedExperiences.length > 0 ? (
-                <p className="text-sm text-white/85 font-light">
+                <p className="text-xs sm:text-sm text-white/85 font-light">
                   {selectedExperiences.map((e) => e.title).join('  ·  ')}
                 </p>
               ) : (
-                <p className="text-sm text-white/55 font-light">
+                <p className="text-xs sm:text-sm text-white/55 font-light">
                   Select any seasonal ritual above to include it in your cabin reservation.
                 </p>
               )}
@@ -681,7 +681,7 @@ export const ExperiencesSection: React.FC = () => {
               const el = document.getElementById('hero-booking');
               if (el) el.scrollIntoView({ behavior: 'smooth' });
             }}
-            className="gap-2 text-xs font-semibold whitespace-nowrap shrink-0 self-start lg:self-center cursor-pointer"
+            className="w-full sm:w-auto justify-center gap-2 text-xs font-semibold whitespace-nowrap shrink-0 self-stretch sm:self-start lg:self-center cursor-pointer"
           >
             Reserve Cabin With These Rituals
             <ArrowUpRight className="w-3.5 h-3.5" />
@@ -689,10 +689,10 @@ export const ExperiencesSection: React.FC = () => {
         </div>
 
         {/* 4. VERIFIED GUEST JOURNALS WITH ATMOSPHERIC VIGNETTES */}
-        <div className="pt-16 border-t border-white/10">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div className="pt-12 sm:pt-16 border-t border-white/10">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 mb-10 sm:mb-12">
             <div>
-              <h3 className="text-3xl sm:text-4xl font-light tracking-[-0.03em] text-white text-balance">
+              <h3 className="text-2xl sm:text-4xl font-light tracking-[-0.03em] text-white text-balance">
                 4.7 Average Rating Across 1,800+ Forest Stays
               </h3>
             </div>
@@ -706,13 +706,13 @@ export const ExperiencesSection: React.FC = () => {
             {GUEST_REFLECTIONS.map((item, index) => (
               <article
                 key={index}
-                className={`py-8 md:py-10 flex flex-col justify-between gap-6 ${
-                  index === 0 ? 'md:pr-10' : 'md:pl-10'
+                className={`py-7 sm:py-8 md:py-10 flex flex-col justify-between gap-5 sm:gap-6 ${
+                  index === 0 ? 'md:pr-8 lg:pr-10' : 'md:pl-8 lg:pl-10'
                 }`}
               >
                 {/* Top Photographic Stay Vignette */}
-                <div className="flex items-center gap-4">
-                  <div className="relative w-16 h-16 rounded-2xl overflow-hidden border border-white/15 bg-[#12262b] shrink-0">
+                <div className="flex items-center gap-3.5 sm:gap-4">
+                  <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-2xl overflow-hidden border border-white/15 bg-[#12262b] shrink-0">
                     <img
                       src={item.photoUrl}
                       alt={item.ritualHighlight}
@@ -735,15 +735,15 @@ export const ExperiencesSection: React.FC = () => {
                   <div className="min-w-0">
                     <div className="flex items-center gap-1.5 text-xs text-amber-300/95 font-light mb-0.5">
                       <Compass className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                      <span className="truncate">{item.ritualHighlight}</span>
+                      <span className="line-clamp-1">{item.ritualHighlight}</span>
                     </div>
-                    <p className="text-xs text-white/55 font-light tabular-nums truncate">
+                    <p className="text-xs text-white/55 font-light tabular-nums line-clamp-2 sm:truncate">
                       {item.stayMeta}
                     </p>
                   </div>
                 </div>
 
-                <blockquote className="text-base sm:text-lg text-white/90 font-light leading-relaxed tracking-[-0.01em] text-pretty">
+                <blockquote className="text-sm sm:text-lg text-white/90 font-light leading-relaxed tracking-[-0.01em] text-pretty">
                   “{item.quote}”
                 </blockquote>
 

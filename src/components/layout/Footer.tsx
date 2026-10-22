@@ -28,7 +28,7 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="relative border-t border-white/10 bg-[#071114] text-white px-6 md:px-10 pt-20 pb-14 overflow-hidden">
+    <footer className="relative border-t border-white/10 bg-[#071114] text-white px-4 sm:px-6 md:px-10 pt-16 sm:pt-20 pb-12 sm:pb-14 overflow-hidden">
       {/* Subtle Horizon Hearth Glow echoing the Hero */}
       <div
         className="pointer-events-none absolute inset-0 opacity-65"
@@ -41,7 +41,7 @@ export const Footer: React.FC = () => {
 
       <div className="relative max-w-[1360px] mx-auto z-10">
         {/* Top Architectural Closing Band */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 pb-16 mb-16 border-b border-white/10">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 sm:gap-8 pb-12 sm:pb-16 mb-12 sm:mb-16 border-b border-white/10">
           <div className="space-y-3">
             <a href="#" className="inline-flex items-center gap-2.5 group">
               <span className="w-6 h-6 rounded-full bg-amber-500/20 flex items-center justify-center">
@@ -51,7 +51,7 @@ export const Footer: React.FC = () => {
                 WoodNest
               </span>
             </a>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-light tracking-[-0.03em] leading-[1.06] text-white max-w-xl text-balance">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-light tracking-[-0.03em] leading-[1.06] text-white max-w-xl text-balance">
               Built for Deep Silence and Seasonal Living
             </h2>
           </div>
@@ -64,7 +64,7 @@ export const Footer: React.FC = () => {
             <button
               type="button"
               onClick={scrollToBooking}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-white text-slate-950 hover:bg-white/90 text-xs font-semibold transition-all whitespace-nowrap shrink-0 cursor-pointer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-white text-slate-950 hover:bg-white/90 text-xs font-semibold transition-all whitespace-nowrap shrink-0 cursor-pointer"
             >
               <span>Reserve Your Hideaway</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
@@ -73,9 +73,9 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Main 12-Column Footer Directory */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-14 border-b border-white/10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10 pb-12 sm:pb-14 border-b border-white/10">
           {/* Colophon & Environmental Standards */}
-          <div className="md:col-span-4 space-y-4">
+          <div className="lg:col-span-4 space-y-4">
             <h3 className="text-xs font-medium text-white/90">
               Architectural Stewardship
             </h3>
@@ -91,7 +91,7 @@ export const Footer: React.FC = () => {
           </div>
 
           {/* Navigation Links */}
-          <div className="md:col-span-2 space-y-3">
+          <div className="lg:col-span-2 space-y-3">
             <h3 className="text-xs font-medium text-white/90">Navigation</h3>
             <ul className="space-y-2.5 text-xs text-white/65 font-light">
               <li>
@@ -118,7 +118,7 @@ export const Footer: React.FC = () => {
           </div>
 
           {/* Sanctuaries with Coordinates */}
-          <div className="md:col-span-3 space-y-3">
+          <div className="lg:col-span-3 space-y-3">
             <h3 className="text-xs font-medium text-white/90">Protected Reserves</h3>
             <ul className="space-y-2.5 text-xs text-white/65 font-light tabular-nums">
               <li>
@@ -145,7 +145,7 @@ export const Footer: React.FC = () => {
           </div>
 
           {/* Seasonal Dispatches Newsletter */}
-          <div className="md:col-span-3 space-y-3">
+          <div className="lg:col-span-3 space-y-3">
             <h3 className="text-xs font-medium text-white/90">Seasonal Dispatches</h3>
             <p className="text-xs text-white/65 font-light leading-relaxed">
               Receive early access to winter solstice cabin releases and newly commissioned forest sites.
@@ -167,7 +167,7 @@ export const Footer: React.FC = () => {
                     }}
                     placeholder="name@domain.com"
                     aria-label="Email for seasonal dispatches"
-                    className="w-full rounded-full bg-white/5 border border-white/15 px-4 py-2.5 text-xs text-white placeholder:text-white/35 focus:outline-none focus:border-amber-400/80 transition-colors"
+                    className="w-full min-w-0 rounded-full bg-white/5 border border-white/15 px-4 py-2.5 text-xs text-white placeholder:text-white/35 focus:outline-none focus:border-amber-400/80 transition-colors"
                   />
                   <button
                     type="submit"
@@ -188,21 +188,21 @@ export const Footer: React.FC = () => {
 
         {/* Bottom Copyright & Back to Top */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/50 font-light">
-          <p className="tabular-nums">
+          <p className="tabular-nums text-center sm:text-left">
             © {new Date().getFullYear()} WoodNest Sanctuaries. All rights reserved.
           </p>
 
-          <div className="flex items-center gap-6">
-            <a href="#contact" className="hover:text-white/85 transition-colors">
+          <div className="flex flex-wrap items-center justify-center sm:justify-end gap-x-5 gap-y-2">
+            <a href="#contact" className="hover:text-white/85 transition-colors whitespace-nowrap">
               Privacy & Land Stewardship
             </a>
-            <a href="#contact" className="hover:text-white/85 transition-colors">
+            <a href="#contact" className="hover:text-white/85 transition-colors whitespace-nowrap">
               Reservation Terms
             </a>
             <button
               type="button"
               onClick={scrollToTop}
-              className="inline-flex items-center gap-1.5 text-white/80 hover:text-amber-300 transition-colors cursor-pointer"
+              className="inline-flex items-center gap-1.5 text-white/80 hover:text-amber-300 transition-colors whitespace-nowrap cursor-pointer"
             >
               <span>Back to Top</span>
               <ArrowUp className="w-3.5 h-3.5 text-amber-400" />
