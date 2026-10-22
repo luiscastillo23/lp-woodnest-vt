@@ -232,8 +232,8 @@ export const BookingWidget: React.FC<BookingWidgetProps> = ({
   const nights = calculateNights();
 
   return (
-    <div id="hero-booking" ref={containerRef} className="relative w-full max-w-[330px] md:mb-8">
-      <GlassCard className="w-full backdrop-blur-2xl">
+    <div id="hero-booking" ref={containerRef} className="relative w-full max-w-full sm:max-w-[380px] md:max-w-[310px] lg:max-w-[330px] shrink-0 lg:mb-8">
+      <GlassCard className="w-full backdrop-blur-2xl p-4 sm:p-5 md:p-6">
         <div className="flex items-start justify-between mb-4">
           <div>
             <h2 className="text-lg font-normal leading-snug text-white">
@@ -341,7 +341,7 @@ export const BookingWidget: React.FC<BookingWidgetProps> = ({
                 exit={{ opacity: 0, y: -4, scale: 0.98 }}
                 transition={{ duration: 0.18, ease: 'easeOut' }}
                 onClick={(e) => e.stopPropagation()}
-                className="absolute top-[calc(100%+6px)] -left-2 -right-2 z-50 rounded-2xl bg-[#091518]/98 backdrop-blur-2xl border border-amber-400/40 shadow-[0_16px_40px_rgba(0,0,0,0.85)] p-2.5 text-white cursor-default"
+                className="absolute top-[calc(100%+6px)] left-0 right-0 sm:-left-2 sm:-right-2 z-50 rounded-2xl bg-[#091518]/98 backdrop-blur-2xl border border-amber-400/40 shadow-[0_16px_40px_rgba(0,0,0,0.85)] p-2.5 text-white cursor-default"
               >
                 {/* Visual Pointer Arrow aligned with active date field */}
                 <div

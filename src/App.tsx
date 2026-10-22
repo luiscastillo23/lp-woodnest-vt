@@ -39,17 +39,20 @@ export function App() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: isLoaded ? 1 : 0 }}
                   transition={{ duration: 0.8, ease: 'easeOut' }}
-                  className="flex flex-col justify-between h-full w-full z-20"
+                  className="flex flex-col justify-between flex-1 h-full w-full z-20"
                   style={{ pointerEvents: isLoaded ? 'auto' : 'none' }}
                 >
                   <Navbar />
 
-                  <main className="flex-1 flex flex-col md:flex-row items-end justify-between px-8 pb-8 pt-2 gap-8">
-                    <div className="h-full flex flex-col justify-between">
+                  <main className="flex-1 flex flex-col md:flex-row items-start md:items-end justify-between px-4 sm:px-6 md:px-8 pb-5 sm:pb-6 md:pb-8 pt-2 gap-6 lg:gap-8">
+                    <div className="w-full md:w-auto lg:h-full flex flex-col justify-between gap-4 sm:gap-6">
                       <HeroTypography />
+                      <div className="lg:hidden">
+                        <RatingBadge />
+                      </div>
                     </div>
 
-                    <div className="md:mb-2">
+                    <div className="hidden lg:block lg:mb-2 shrink-0">
                       <RatingBadge />
                     </div>
 

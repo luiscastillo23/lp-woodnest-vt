@@ -64,9 +64,9 @@ export const PreloaderOverlay: React.FC<PreloaderOverlayProps> = ({ progress, is
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10, transition: { duration: 0.4 } }}
-            className="absolute bottom-8 left-10"
+            className="absolute bottom-5 left-5 sm:bottom-8 sm:left-10"
           >
-            <span className="text-6xl md:text-7xl font-light tracking-tight text-white/60 select-none">
+            <span className="text-5xl sm:text-6xl md:text-7xl font-light tracking-tight text-white/60 select-none tabular-nums">
               {progress}%
             </span>
           </motion.div>

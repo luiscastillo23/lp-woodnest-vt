@@ -8,7 +8,7 @@ interface FrameContainerProps {
 
 export const FrameContainer: React.FC<FrameContainerProps> = ({ isLoaded, children }) => {
   return (
-    <div className="relative w-full h-screen flex items-center justify-center p-6 md:p-10 select-none bg-[#1c353d] z-30">
+    <div className="relative w-full min-h-[100dvh] lg:h-[100dvh] flex items-stretch lg:items-center justify-center p-3 sm:p-5 md:p-8 lg:p-10 select-none bg-[#1c353d] z-30">
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-1000 scale-105"
@@ -33,7 +33,7 @@ export const FrameContainer: React.FC<FrameContainerProps> = ({ isLoaded, childr
         />
       </div>
 
-      <div className="relative w-full h-full max-w-[1360px] max-h-[820px] flex flex-col justify-between z-10">
+      <div className="relative w-full min-h-[calc(100dvh-1.5rem)] sm:min-h-[calc(100dvh-2.5rem)] md:min-h-[calc(100dvh-4rem)] lg:min-h-0 lg:h-full max-w-[1360px] lg:max-h-[820px] flex flex-col justify-between z-10">
         {children}
       </div>
     </div>
